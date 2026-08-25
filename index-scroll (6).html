@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/favicon/site.webmanifest">
+<meta name="theme-color" content="#BB0408">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salman Mohammad Transport LLC | Sewage Removal & Water Supply Dubai</title>
+<style>
+  /* ---------- Montserrat (self-hosted variable font) ---------- */
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-VariableFont_wght.woff2') format('woff2-variations'),
+         url('fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Italic-VariableFont_wght.woff2') format('woff2-variations'),
+         url('fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  :root {
+    /* sampled directly from the logo artwork */
+    --smt-red: #BB0408;
+    --smt-green: #01461A;
+    --smt-black: #000000;
+    /* lighter tints for use on dark backgrounds */
+    --smt-red-bright: #E4141A;
+    --smt-green-bright: #2E9B54;
+    --ink: #14161A;
+    --muted: #5B6167;
+    --line: #E6E8EA;
+    --bg-soft: #F6F7F8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    overflow: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { letter-spacing: -0.02em; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  button { font-family: inherit; }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--line);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    z-index: 200;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; }
+  .brand img { height: 30px; width: auto; }
+  .brand .divider { width: 1px; height: 30px; background: var(--line); }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav > a, .nav-item {
+    font-size: 15px; font-weight: 600; color: var(--ink); cursor: pointer; position: relative;
+    padding-bottom: 4px;
+    transition: color 0.35s ease;
+  }
+  /* animated underline that grows in when the section becomes active */
+  .nav-item::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: var(--smt-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-item.active {
+    color: var(--smt-red);
+    font-weight: 800;
+  }
+  .nav-item.active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-item.has-dropdown { display: flex; align-items: center; gap: 5px; }
+  .dropdown {
+    position: absolute; top: 36px; left: 50%; transform: translateX(-50%);
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    padding: 8px; min-width: 240px;
+    opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .nav-item.has-dropdown:hover .dropdown {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+  /* invisible bridge so the dropdown doesn't close when the
+     cursor travels from the nav item down into the menu */
+  .nav-item.has-dropdown::before {
+    content: "";
+    position: absolute;
+    top: 100%; left: -20px; right: -20px;
+    height: 24px;
+  }
+
+  /* --- Level 1: the two category parents --- */
+  .dd-parent { position: relative; }
+  .dd-parent-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .dd-parent:hover > .dd-parent-label {
+    background: var(--bg-soft);
+    color: var(--smt-red);
+  }
+  .dd-arrow {
+    font-size: 18px;
+    line-height: 1;
+    color: var(--muted);
+    transition: transform 0.25s ease, color 0.2s ease;
+  }
+  .dd-parent:hover .dd-arrow {
+    color: var(--smt-red);
+    transform: translateX(3px);
+  }
+
+  /* --- Level 2: the services flyout --- */
+  .submenu {
+    position: absolute;
+    top: -8px;
+    left: 100%;
+    margin-left: 6px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    padding: 8px;
+    min-width: 210px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .dd-parent:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  /* bridge across the gap between parent and flyout */
+  .dd-parent::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 100%;
+    width: 12px; height: 100%;
+  }
+
+  /* if the flyout would run off the right edge, open it leftward instead */
+  .submenu.flip-left {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 6px;
+    transform: translateX(6px);
+  }
+  .dd-parent:hover > .submenu.flip-left { transform: translateX(0); }
+
+  .dropdown a, .submenu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .dropdown a:hover, .submenu a:hover { background: var(--bg-soft); color: var(--smt-red); }
+
+  .header-page-label {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) translateY(-140%);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+    background: #fff;
+    padding: 14px 22px 12px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+  }
+  .header-page-label.showing {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  header.on-dark-header .header-page-label { color: var(--ink); }
+  @media (max-width: 900px) {
+    .header-page-label { display: none; }
+  }
+
+  .call-btn {
+    background: var(--smt-green); color: #fff; padding: 11px 20px; border-radius: 6px;
+    font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  /* ---------- Scroll-snap page container ---------- */
+  .snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .page {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+  .page-inner { width: 100%; }
+
+  /* Section heading motion: starts above + invisible, slides down to place;
+     on exit (scrolled past), slides out to the right + fades */
+  .section-heading {
+    opacity: 0;
+    transform: translate3d(0, -28px, 0);
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease;
+    will-change: transform, opacity;
+  }
+  .page.in-view .section-heading {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  .page.exiting .section-heading {
+    opacity: 0;
+    transform: translate3d(90px, 0, 0);
+    transition: transform 0.45s cubic-bezier(0.4,0,1,1), opacity 0.35s ease;
+  }
+
+  .section-body {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) 0.08s, opacity 0.45s ease 0.08s;
+    will-change: transform, opacity;
+  }
+  .page.in-view .section-body { opacity: 1; transform: translate3d(0, 0, 0); }
+  .page.exiting .section-body {
+    opacity: 0; transform: translate3d(90px, 0, 0);
+    transition: transform 0.45s cubic-bezier(0.4,0,1,1), opacity 0.35s ease;
+  }
+
+  /* respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .snap-container { scroll-snap-type: none; }
+    .section-heading, .section-body,
+    .page.in-view .section-heading, .page.in-view .section-body,
+    .page.exiting .section-heading, .page.exiting .section-body {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* ---------- Home ---------- */
+  #page-home {
+    background: linear-gradient(180deg, rgba(10,10,10,0.75), rgba(10,10,10,0.6)),
+      url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1600&q=80') center/cover;
+    background-attachment: scroll;
+    color: #fff;
+    transform: translateZ(0);
+  }
+  .hero-inner { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  .pill {
+    display: inline-block; background: rgba(46,155,84,0.16);
+    border: 1px solid rgba(46,155,84,0.55); color: #5FD186;
+    font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 30px; margin-bottom: 24px;
+  }
+  .hero-inner h1 { font-size: 50px; line-height: 1.1; font-weight: 800; margin-bottom: 22px; }
+  .hero-inner h1 .accent-green { color: var(--smt-green-bright); }
+  .hero-inner p.sub { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 560px; margin-bottom: 32px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--smt-red); color: #fff; padding: 15px 26px; border-radius: 6px;
+    font-weight: 700; font-size: 15px; border: none; cursor: pointer;
+  }
+  .btn-outline {
+    background: transparent; color: #fff; padding: 15px 26px; border-radius: 6px;
+    font-weight: 700; font-size: 15px; border: 1px solid rgba(255,255,255,0.5); cursor: pointer;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.6); font-size: 12px; text-align: center;
+    animation: bob 1.8s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{ transform: translate(-50%,0);} 50%{ transform: translate(-50%,8px);} }
+
+  /* ---------- About ---------- */
+  #page-about .page-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 0 24px; max-width: 1180px; margin: 0 auto; }
+  .eyebrow {
+    color: var(--smt-red); font-weight: 800; font-size: 13px; letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--smt-red); display: inline-block; }
+  #page-about h2 { font-size: 34px; font-weight: 800; margin-bottom: 18px; line-height: 1.25; }
+  #page-about h2 .r { color: var(--smt-red); }
+  #page-about p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
+
+  /* ---------- About image slideshow ---------- */
+  .about-slider {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    background: var(--bg-soft);
+  }
+  .about-slider .slides { position: relative; aspect-ratio: 10 / 7; }
+  .about-slider .slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .about-slider .slide.active { opacity: 1; pointer-events: auto; }
+  .about-slider .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slide-caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 34px 18px 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.72));
+    color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+  }
+  .slide-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.9); border: none;
+    color: var(--ink); font-size: 22px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 3;
+  }
+  .slide-nav:hover { background: #fff; }
+  .slide-nav.prev { left: 12px; }
+  .slide-nav.next { right: 12px; }
+  .slide-nav.prev:hover { transform: translateY(-50%) translateX(-2px); }
+  .slide-nav.next:hover { transform: translateY(-50%) translateX(2px); }
+  .slide-dots {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 3;
+  }
+  .slide-dots button {
+    width: 8px; height: 8px; border-radius: 50%; padding: 0;
+    border: 1px solid rgba(255,255,255,0.85);
+    background: transparent; cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .slide-dots button.active { background: #fff; transform: scale(1.25); }
+  #page-about img { border-radius: 8px; }
+
+  /* ---------- Services ---------- */
+  #page-services { background: var(--bg-soft); }
+  #page-services .page-inner { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .services-head { text-align: center; max-width: 640px; margin: 0 auto 28px; }
+  .services-head h2 { font-size: 30px; font-weight: 800; margin-bottom: 10px; }
+  .services-head h2 .g { color: var(--smt-green); }
+  .services-head p { color: var(--muted); font-size: 15px; }
+
+  .svc-category { margin-bottom: 26px; }
+  .svc-category:last-child { margin-bottom: 0; }
+  .cat-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .cat-badge {
+    font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #fff;
+    padding: 6px 14px; border-radius: 4px;
+  }
+  .cat-badge-green { background: var(--smt-green); }
+  .cat-badge-red { background: var(--smt-red); }
+  .cat-desc { font-size: 13px; color: var(--muted); }
+  .cat-head::after {
+    content: ""; flex: 1; height: 1px; background: var(--line); min-width: 20px;
+  }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .svc-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
+  .svc-card:hover { border-color: var(--smt-red); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.07); }
+  .svc-card.svc-flash {
+    border-color: var(--smt-red);
+    box-shadow: 0 0 0 3px rgba(187,4,8,0.18), 0 10px 24px rgba(0,0,0,0.1);
+  }
+  .svc-card .img-wrap { height: 92px; overflow: hidden; }
+  .svc-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .svc-body { padding: 14px; }
+  .svc-body h3 { font-size: 14px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
+  .svc-body p { color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 10px; }
+  .svc-link { color: var(--smt-red); font-weight: 700; font-size: 12px; }
+
+  /* ---------- Quote / Contact page ---------- */
+  #page-quote .page-inner { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+  #smt-page-back {
+    display: inline-flex; align-items: center; gap: 6px; color: var(--ink); background: var(--bg-soft);
+    border: 1px solid var(--line); border-radius: 20px; padding: 8px 16px; font-size: 13px; cursor: pointer; margin-bottom: 18px;
+  }
+  #page-quote h2 { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
+  #smt-step1-sub { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
+  #smt-step1 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .smt-freq-btn {
+    padding: 22px 16px; background: var(--bg-soft); border: 2px solid var(--line); border-radius: 10px;
+    color: var(--ink); font-size: 15px; font-weight: 800; cursor: pointer; text-align: left;
+  }
+  .smt-freq-btn:hover { border-color: var(--smt-red); }
+  .smt-freq-btn .desc { font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  #smt-selected-label {
+    display: inline-block; padding: 5px 12px; background: rgba(200,16,46,0.08);
+    border: 1px solid var(--smt-red); border-radius: 20px; font-size: 12px; color: var(--smt-red);
+    font-weight: 700; width: fit-content;
+  }
+  #page-quote label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+  #page-quote input, #page-quote textarea, #page-quote select {
+    width: 100%; padding: 11px 13px; border-radius: 6px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink); font-size: 14px; font-family: inherit;
+  }
+  #page-quote input:focus, #page-quote textarea:focus, #page-quote select:focus { outline: none; border-color: var(--smt-red); }
+  #page-quote textarea { resize: vertical; }
+  .btn-submit {
+    margin-top: 2px; padding: 13px 24px; background: var(--smt-red); color: #fff;
+    font-size: 15px; font-weight: 800; border: none; border-radius: 6px; cursor: pointer;
+  }
+
+  /* ---------- Clients page ---------- */
+  #page-clients { background: var(--bg-soft); }
+  #page-clients .page-inner { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+  .client-grid {
+    /* flex rather than grid, so a partial final row stays centred
+       as more logos are added over time */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .client-logo {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    height: 88px;
+    flex: 0 1 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .client-logo:hover { border-color: var(--smt-red); transform: translateY(-2px); }
+  .client-logo img {
+    max-width: 100%;
+    max-height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+  .client-logo span {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .client-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .client-stats .num { font-size: 28px; font-weight: 800; color: var(--smt-red); }
+  .client-stats .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ---------- Quote form panel ---------- */
+  #smt-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.55);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+  }
+  #smt-overlay.open { opacity: 1; visibility: visible; }
+
+  #smt-panel {
+    background: #fff;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    transform: translateY(18px) scale(0.98);
+    transition: transform 0.32s cubic-bezier(0.22,1,0.36,1);
+  }
+  #smt-overlay.open #smt-panel { transform: translateY(0) scale(1); }
+
+  /* header stays pinned so Back is always reachable */
+  .panel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .panel-back {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 20px; padding: 9px 16px;
+    font-size: 13px; font-weight: 600; color: var(--ink);
+    cursor: pointer; font-family: inherit;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .panel-back:hover { background: #ececee; border-color: #d8dade; }
+  .panel-close {
+    background: none; border: none; font-size: 26px; line-height: 1;
+    color: var(--muted); cursor: pointer; padding: 0 6px;
+    transition: color 0.2s ease;
+  }
+  .panel-close:hover { color: var(--ink); }
+
+  /* only the fields scroll */
+  .panel-body {
+    padding: 20px 22px 22px;
+    overflow-y: auto;
+    flex: 1;
+  }
+  .panel-body h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  #smt-quote-form { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+  #smt-panel label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: var(--ink); }
+  #smt-panel input, #smt-panel textarea, #smt-panel select {
+    width: 100%; padding: 11px 13px; border-radius: 6px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink); font-size: 14px; font-family: inherit;
+  }
+  #smt-panel input:focus, #smt-panel textarea:focus, #smt-panel select:focus {
+    outline: none; border-color: var(--smt-red);
+  }
+  #smt-panel textarea { resize: vertical; }
+
+  /* submit stays pinned at the bottom */
+  .panel-foot {
+    padding: 14px 22px 18px;
+    border-top: 1px solid var(--line);
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .panel-foot .btn-submit { width: 100%; margin: 0; }
+  .panel-foot .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+  /* honeypot — visually hidden but not display:none, so bots still see it */
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px; height: 1px; overflow: hidden;
+  }
+
+  /* success / error panes */
+  #smt-success, #smt-error { text-align: center; padding: 18px 6px 6px; }
+  #smt-success h4, #smt-error h4 { font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+  #smt-success p, #smt-error p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+  #smt-success a, #smt-error a { color: var(--smt-red); font-weight: 700; }
+  .result-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 800; color: #fff;
+    margin: 0 auto 14px;
+  }
+  .result-icon.ok { background: var(--smt-green); }
+  .result-icon.bad { background: var(--smt-red); }
+  .retry-btn {
+    margin-top: 14px; padding: 10px 20px; border-radius: 6px;
+    border: 1px solid var(--line); background: var(--bg-soft);
+    font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .field-error { border-color: var(--smt-red) !important; }
+  .err-msg { color: var(--smt-red); font-size: 12px; margin-top: 4px; }
+
+  @media (max-width: 640px) {
+    #smt-overlay { padding: 0; align-items: flex-end; }
+    #smt-panel { max-width: 100%; max-height: 92vh; border-radius: 16px 16px 0 0; }
+  }
+
+  /* ---------- Progress dots ---------- */
+  .progress-dots {
+    position: fixed; right: 26px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 12px; z-index: 150;
+  }
+  .progress-dots button {
+    width: 10px; height: 10px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.2);
+    background: transparent; cursor: pointer; padding: 0;
+  }
+  #page-home ~ .progress-dots, .on-dark .progress-dots button { border-color: rgba(255,255,255,0.5); }
+  .progress-dots button.active { background: var(--smt-red); border-color: var(--smt-red); }
+
+  /* ---------- Footer (normal flow, not snapped) ---------- */
+  footer {
+    background: var(--smt-black);
+    color: #fff;
+    scroll-snap-align: end;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .foot-cta {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    padding: 40px 24px; background: var(--smt-green);
+  }
+  .foot-cta h3 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .foot-cta p { opacity: 0.9; font-size: 14px; }
+  .cta-call { background: #fff; color: var(--smt-red); padding: 13px 22px; border-radius: 6px; font-weight: 800; font-size: 14px; }
+  .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding: 56px 24px 40px; max-width: 1180px; margin: 0 auto; }
+  .foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .foot-brand .red { color: var(--smt-red); font-weight: 900; font-size: 20px; }
+  footer h4 { font-size: 15px; margin-bottom: 16px; }
+  footer h4::after { content: ""; display: block; width: 30px; height: 2px; background: var(--smt-red); margin-top: 8px; }
+  footer p, footer li { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 2; }
+  footer ul { list-style: none; }
+  .foot-contact li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.7; margin-bottom: 10px; }
+  .foot-contact .ico { color: var(--smt-red); flex-shrink: 0; margin-top: 3px; }
+  .foot-contact a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .foot-contact a:hover { color: #fff; }
+  .foot-social { display: flex; gap: 10px; margin-top: 18px; }
+  .foot-social a {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; transition: background 0.25s ease;
+  }
+  .foot-social a:hover { background: var(--smt-red); }
+  .foot-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  @media (max-width: 1150px) and (min-width: 901px) {
+    .svc-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    nav, .call-btn, .progress-dots { display: none; }
+    .hero-inner h1 { font-size: 32px; }
+    #page-about .page-inner, .svc-grid, .foot-grid { grid-template-columns: 1fr; }
+    #smt-step1 { grid-template-columns: 1fr; }
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .client-logo { flex: 0 1 140px; height: 84px; }
+    .client-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .page { height: auto; min-height: 100vh; padding: 100px 0 60px; }
+    .snap-container { height: auto; overflow: visible; scroll-snap-type: none; }
+    body { height: auto; overflow: auto; }
+    footer { min-height: 0; display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" onclick="goTo(0)">
+    <img src="assets/logo.svg" alt="Salman Mohammad Transport LLC">
+    <div class="divider"></div>
+    <div>
+      <div style="font-weight:700; font-size:15px; letter-spacing:0.01em; line-height:1.2;">SALMAN MOHAMMAD</div>
+      <div style="font-size:13px; letter-spacing:0.16em; color:var(--muted); font-weight:600; line-height:1.3;">TRANSPORT LLC</div>
+    </div>
+  </div>
+  <nav>
+    <span class="nav-item" data-nav="0" onclick="goTo(0)">Home</span>
+    <span class="nav-item" data-nav="1" onclick="goTo(1)">About Us</span>
+    <span class="nav-item has-dropdown" data-nav="2" onclick="goTo(2)">
+      Services ▾
+      <div class="dropdown">
+        <div class="dd-parent">
+          <span class="dd-parent-label">
+            Environmental Services
+            <span class="dd-arrow">›</span>
+          </span>
+          <div class="submenu">
+            <a href="#" onclick="selectService('Sewage Removal', event)">Sewage Removal</a>
+            <a href="#" onclick="selectService('Sweet Water Supply', event)">Sweet Water Supply</a>
+            <a href="#" onclick="selectService('Salt Water Supply', event)">Salt Water Supply</a>
+            <a href="#" onclick="selectService('Potable Water Supply', event)">Potable Water Supply</a>
+            <a href="#" onclick="selectService('TSE Water Supply', event)">TSE Water Supply</a>
+            <a href="#" onclick="selectService('Waste Management', event)">Waste Management</a>
+          </div>
+        </div>
+
+        <div class="dd-parent">
+          <span class="dd-parent-label">
+            Freight Services
+            <span class="dd-arrow">›</span>
+          </span>
+          <div class="submenu">
+            <a href="#" onclick="selectService('Container Hauling', event)">Container Hauling</a>
+            <a href="#" onclick="selectService('Diesel Supply', event)">Diesel Supply</a>
+          </div>
+        </div>
+      </div>
+    </span>
+    <span class="nav-item" data-nav="4" onclick="goTo(4)">Contact</span>
+  </nav>
+  <div class="header-page-label" id="headerLabel" style="display:none;"></div>
+  <a href="tel:+971559449223" class="call-btn">📞 +971 55 944 9223</a>
+</header>
+
+<div class="snap-container" id="snapContainer">
+
+  <section class="page on-dark" id="page-home">
+    <div class="page-inner hero-inner">
+      <div class="section-heading">
+        <span class="pill">#1 Trusted Transport Solutions in Dubai, UAE</span>
+        <h1>Top <span class="accent-green">Environmental &amp; Freight Services</span> Delivered for Your Business</h1>
+      </div>
+      <div class="section-body">
+        <p class="sub">From sewage removal, water supply and waste management to container haulage and on-site diesel — one licensed partner covering every requirement across Dubai and the UAE, 24/7.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="goTo(4)">Request a Quote</button>
+          <a href="tel:+971559449223" class="btn-outline">Call Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll to explore ↓</div>
+  </section>
+
+  <section class="page" id="page-about">
+    <div class="page-inner">
+      <div class="about-slider section-body">
+        <div class="slides" id="aboutSlides">
+          <div class="slide active">
+            <img src="assets/about/about-1-fleet.jpg" alt="SMT container haulage truck on a UAE highway">
+            <div class="slide-caption">Container haulage across the UAE</div>
+          </div>
+          <div class="slide">
+            <img src="assets/about/about-2-sewage.jpg" alt="SMT sewage tanker on site">
+            <div class="slide-caption">Sewage removal &amp; waste handling</div>
+          </div>
+          <div class="slide">
+            <img src="assets/about/about-3-diesel.jpg" alt="SMT diesel bowser refuelling on site">
+            <div class="slide-caption">On-site diesel supply</div>
+          </div>
+        </div>
+
+        <button class="slide-nav prev" onclick="moveSlide(-1)" aria-label="Previous image">‹</button>
+        <button class="slide-nav next" onclick="moveSlide(1)" aria-label="Next image">›</button>
+
+        <div class="slide-dots" id="slideDots">
+          <button onclick="goToSlide(0)" class="active" aria-label="Image 1"></button>
+          <button onclick="goToSlide(1)" aria-label="Image 2"></button>
+          <button onclick="goToSlide(2)" aria-label="Image 3"></button>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading">
+          <div class="eyebrow">ABOUT US</div>
+          <h2>Leading <span class="r">Transport &amp; Environmental</span> Company in Dubai</h2>
+        </div>
+        <div class="section-body">
+          <p>Salman Mohammad Transport L.L.C is a premier organization offering specialized transport services all over Dubai and the UAE.</p>
+          <p>We combine the advantages of large-scale operations with the customized expertise found only in a locally owned and operated business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-services">
+    <div class="page-inner">
+      <div class="services-head section-heading">
+        <div class="eyebrow" style="justify-content:center;">OUR SERVICES</div>
+        <h2>Our Premium <span class="g">Services in Dubai</span></h2>
+      </div>
+
+      <div class="section-body">
+
+        <!-- Category 1: Environmental Services -->
+        <div class="svc-category">
+          <div class="cat-head">
+            <span class="cat-badge cat-badge-green">Environmental Services</span>
+            <span class="cat-desc">Water supply, sewage &amp; waste handling</span>
+          </div>
+          <div class="svc-grid">
+            <div class="svc-card">
+              <div class="img-wrap"><img src="assets/services/sewage-removal.jpg" alt="Sewage removal tanker"></div>
+              <div class="svc-body"><h3>Sewage Removal</h3><p>Safe, hygienic collection &amp; disposal, fully compliant.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+            <div class="svc-card">
+              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&q=80" alt="Sweet water"></div>
+              <div class="svc-body"><h3>Sweet Water Tanker</h3><p>High-quality delivery for pools, sites &amp; homes.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+            <div class="svc-card">
+              <div class="img-wrap"><img src="assets/services/salt-water.jpg" alt="Salt water tanker"></div>
+              <div class="svc-body"><h3>Salt Water Tanker</h3><p>Reliable supply for compaction &amp; piling works.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+            <div class="svc-card">
+              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=80" alt="Waste management"></div>
+              <div class="svc-body"><h3>Waste Management</h3><p>End-to-end collection &amp; disposal services.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Freight Services -->
+        <div class="svc-category">
+          <div class="cat-head">
+            <span class="cat-badge cat-badge-red">Freight Services</span>
+            <span class="cat-desc">Container transport &amp; bulk haulage</span>
+          </div>
+          <div class="svc-grid">
+            <div class="svc-card">
+              <div class="img-wrap"><img src="assets/services/container-hauling.jpg" alt="SMT container haulage truck"></div>
+              <div class="svc-body"><h3>Container Hauling</h3><p>Container transport &amp; heavy haulage across the UAE.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+            <div class="svc-card">
+              <div class="img-wrap"><img src="assets/services/diesel-supply.jpg" alt="On-site diesel refuelling"></div>
+              <div class="svc-body"><h3>Diesel Supply</h3><p>On-site fuel delivery for fleets, sites &amp; generators.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="page" id="page-clients">
+    <div class="page-inner">
+      <div class="services-head section-heading">
+        <div class="eyebrow" style="justify-content:center;">OUR CLIENTS</div>
+        <h2>Trusted by <span class="g">Leading Companies</span></h2>
+        <p>Contractors, facilities managers and industrial operators across Dubai rely on our fleet.</p>
+      </div>
+
+      <div class="section-body">
+        <div class="client-grid">
+          <div class="client-logo"><img src="assets/clients/larsen-toubro.png" alt="Larsen &amp; Toubro"></div>
+          <div class="client-logo"><img src="assets/clients/emirates-transport.png" alt="Emirates Transport"></div>
+          <div class="client-logo"><img src="assets/clients/dubai-driving-center.png" alt="Dubai Driving Center"></div>
+          <div class="client-logo"><img src="assets/clients/almutakamela.png" alt="Almutakamela Vehicle Testing &amp; Registration"></div>
+          <div class="client-logo"><img src="assets/clients/deep-seafood.png" alt="The Deep Seafood Company"></div>
+          <div class="client-logo"><img src="assets/clients/belhasa.png" alt="Belhasa"></div>
+          <div class="client-logo"><img src="assets/clients/elite-group.png" alt="Elite Group Holding Ltd"></div>
+          <div class="client-logo"><img src="assets/clients/high-power.png" alt="High Power Signature"></div>
+          <div class="client-logo"><img src="assets/clients/uae-fa.png" alt="UAE Football Association"></div>
+        </div>
+
+        <div class="client-stats">
+          <div><div class="num">10+</div><div class="label">Years in operation</div></div>
+          <div><div class="num">24/7</div><div class="label">Fleet availability</div></div>
+          <div><div class="num">8</div><div class="label">Services offered</div></div>
+          <div><div class="num">100%</div><div class="label">Municipality compliant</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-quote">
+    <div class="page-inner">
+      <div class="section-heading">
+        <h2>Request a Quote</h2>
+        <p id="smt-step1-sub">First, tell us what kind of service you need. Prefer to talk? Call <a href="tel:+971559449223" style="color:var(--smt-red); font-weight:700;">+971 55 944 9223</a> or <a href="tel:+97145806482" style="color:var(--smt-red); font-weight:700;">04 580 6482</a>.</p>
+      </div>
+
+      <div class="section-body">
+        <div id="smt-step1">
+          <button type="button" data-freq="One-Time" class="smt-freq-btn">
+            One-Time Service
+            <div class="desc">A single tanker or supply job</div>
+          </button>
+          <button type="button" data-freq="Monthly" class="smt-freq-btn">
+            Monthly / Recurring
+            <div class="desc">Ongoing contract — we'll call to discuss</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="foot-cta">
+    <div><h3>Need immediate tanker service in Dubai?</h3><p>Our fleet is ready 24/7 to handle your requirements.</p></div>
+    <a href="tel:+971559449223" class="cta-call">📞 +971 55 944 9223</a>
+  </div>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">
+        <img src="assets/logo-white.svg" alt="Salman Mohammad Transport LLC" style="height:30px; width:auto;">
+      </div>
+      <p style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">SALMAN MOHAMMAD TRANSPORT LLC</p>
+      <p>Experts you can trust. From waste &amp; sludge management to supplying water tanks, we are your reliable partner in Dubai.</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.8-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.9 21.4H3.3V9.7h3.6v11.7zM5.1 8.1A2.1 2.1 0 117.2 6a2.1 2.1 0 01-2.1 2.1zM21.4 21.4h-3.6v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H10V9.7h3.4v1.6h.1a3.8 3.8 0 013.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.5z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul><li onclick="goTo(0)" style="cursor:pointer;">Home</li><li onclick="goTo(1)" style="cursor:pointer;">About Us</li><li onclick="goTo(2)" style="cursor:pointer;">Our Services</li><li onclick="goTo(3)" style="cursor:pointer;">Our Clients</li><li onclick="goTo(4)" style="cursor:pointer;">Contact Us</li></ul>
+    </div>
+    <div>
+      <h4>Contact Information</h4>
+      <ul class="foot-contact">
+        <li><span class="ico">📍</span><span>Shop No. 36, Speedex Center<br>Al Qusais Industrial Area 4<br>Dubai, UAE</span></li>
+        <li><span class="ico">📞</span><span><a href="tel:+971559449223">+971 55 944 9223</a><br><a href="tel:+97145806482">04 580 6482</a></span></li>
+        <li><span class="ico">✉️</span><a href="mailto:info@salmanmohammadtransport.ae">info@salmanmohammadtransport.ae</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 Salman Mohammad Transport LLC. All rights reserved.</div>
+</footer>
+</div>
+
+<div class="progress-dots" id="progressDots">
+  <button data-i="0" onclick="goTo(0)" title="Home"></button>
+  <button data-i="1" onclick="goTo(1)" title="About"></button>
+  <button data-i="2" onclick="goTo(2)" title="Services"></button>
+  <button data-i="3" onclick="goTo(3)" title="Our clients"></button>
+  <button data-i="4" onclick="goTo(4)" title="Request a Quote"></button>
+  <button data-i="5" onclick="goTo(5)" title="Contact details"></button>
+</div>
+
+
+
+<!-- Quote form panel: opens over the page when a service type is chosen -->
+<div id="smt-overlay" aria-hidden="true">
+  <div id="smt-panel" role="dialog" aria-modal="true" aria-labelledby="smt-panel-title">
+
+    <div class="panel-head">
+      <button type="button" class="panel-back" onclick="closeQuotePanel()" aria-label="Back to service type">
+        <span aria-hidden="true">←</span> Change service type
+      </button>
+      <button type="button" class="panel-close" onclick="closeQuotePanel()" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="panel-body">
+      <h3 id="smt-panel-title">Request a Quote</h3>
+      <div id="smt-selected-label"></div>
+
+      <form id="smt-quote-form" novalidate>
+        <!-- honeypot: hidden from people, bots fill it in -->
+        <div class="hp-field" aria-hidden="true">
+          <label>Do not fill this in</label>
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="frequency" id="smt-frequency-field" value="">
+        <div>
+          <label>Service Needed *</label>
+          <select name="service" required id="smt-service-select">
+            <option value="" disabled selected>Select a service</option>
+            <optgroup label="Environmental Services">
+              <option>Sewage Removal</option>
+              <option>Sweet Water Supply</option>
+              <option>Salt Water Supply</option>
+              <option>Potable Water Supply</option>
+              <option>TSE Water Supply</option>
+              <option>Waste Management</option>
+            </optgroup>
+            <optgroup label="Freight Services">
+              <option>Container Hauling</option>
+              <option>Diesel Supply</option>
+            </optgroup>
+            <option>Other / Not sure</option>
+          </select>
+        </div>
+        <div><label>Company Name *</label><input type="text" name="company" required></div>
+        <div><label>Contact Person Name *</label><input type="text" name="contact_name" required></div>
+        <div><label>Phone Number *</label><input type="tel" name="phone" required placeholder="+971 5X XXX XXXX"></div>
+        <div><label id="smt-desc-label">Briefly describe what you need *</label><textarea name="description" required rows="3" id="smt-desc-field"></textarea></div>
+      </form>
+
+      <div id="smt-success" hidden>
+        <div class="result-icon ok">✓</div>
+        <h4>Request received</h4>
+        <p>Thank you — we've got your details and will be in touch shortly. For anything urgent, call
+          <a href="tel:+971559449223">+971 55 944 9223</a>.</p>
+      </div>
+
+      <div id="smt-error" hidden>
+        <div class="result-icon bad">!</div>
+        <h4>Couldn't send your request</h4>
+        <p>Something went wrong on our side. Please call <a href="tel:+971559449223">+971 55 944 9223</a>
+           or <a href="tel:+97145806482">04 580 6482</a>, or email
+           <a href="mailto:info@salmanmohammadtransport.ae">info@salmanmohammadtransport.ae</a>.</p>
+        <button type="button" class="retry-btn" onclick="resetQuoteForm()">Try again</button>
+      </div>
+    </div>
+
+    <div class="panel-foot">
+      <button type="submit" form="smt-quote-form" class="btn-submit">Request Quote</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var container = document.getElementById('snapContainer');
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  // the footer is the final scroll stop, so include it as a navigable target
+  var footerEl = document.querySelector('footer');
+  if (footerEl) pages.push(footerEl);
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.progress-dots button'));
+  var headerLabel = document.getElementById('headerLabel');
+  var navItems = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
+  var currentIdx = -1;
+
+  // Flip a services submenu to open leftward if it would
+  // otherwise run past the right edge of the window.
+  document.querySelectorAll('.dd-parent').forEach(function (parent) {
+    parent.addEventListener('mouseenter', function () {
+      var sub = parent.querySelector('.submenu');
+      if (!sub) return;
+      sub.classList.remove('flip-left');
+      var rect = parent.getBoundingClientRect();
+      var needed = sub.offsetWidth || 210;
+      if (rect.right + needed + 20 > window.innerWidth) {
+        sub.classList.add('flip-left');
+      }
+    });
+  });
+
+  // ---------- About image slideshow ----------
+  var slideIdx = 0;
+  var slideTimer = null;
+
+  function renderSlides() {
+    var slides = document.querySelectorAll('.about-slider .slide');
+    var dots = document.querySelectorAll('.slide-dots button');
+    slides.forEach(function (s, i) { s.classList.toggle('active', i === slideIdx); });
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === slideIdx); });
+  }
+
+  function goToSlide(i) {
+    var slides = document.querySelectorAll('.about-slider .slide');
+    if (!slides.length) return;
+    slideIdx = (i + slides.length) % slides.length;
+    renderSlides();
+    restartSlideTimer();
+  }
+  window.goToSlide = goToSlide;
+
+  function moveSlide(step) { goToSlide(slideIdx + step); }
+  window.moveSlide = moveSlide;
+
+  function restartSlideTimer() {
+    if (slideTimer) clearInterval(slideTimer);
+    slideTimer = setInterval(function () { goToSlideAuto(); }, 5000);
+  }
+  function goToSlideAuto() {
+    var slides = document.querySelectorAll('.about-slider .slide');
+    if (!slides.length) return;
+    slideIdx = (slideIdx + 1) % slides.length;
+    renderSlides();
+  }
+
+  // pause auto-advance while the cursor is over the slider
+  var sliderEl = document.querySelector('.about-slider');
+  if (sliderEl) {
+    sliderEl.addEventListener('mouseenter', function () { if (slideTimer) clearInterval(slideTimer); });
+    sliderEl.addEventListener('mouseleave', restartSlideTimer);
+    restartSlideTimer();
+  }
+
+  function goTo(i) {
+    pages[i].scrollIntoView({ behavior: 'smooth' });
+  }
+  window.goTo = goTo;
+
+  // Clicking a service in the dropdown jumps to the quote form
+  // and pre-selects that service, so the visitor doesn't re-pick it.
+  function selectService(name, ev) {
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+    goTo(4);
+    setTimeout(function () {
+      // remember the choice; it gets applied once a service type is picked
+      window.__pendingService = name;
+      applyPendingService();
+      highlightServiceCard(name);
+    }, 450);
+    return false;
+  }
+  window.selectService = selectService;
+
+  function applyPendingService() {
+    var sel = document.getElementById('smt-service-select');
+    if (!sel || !window.__pendingService) return;
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === window.__pendingService) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  function highlightServiceCard(name) {
+    var cards = document.querySelectorAll('.svc-card');
+    cards.forEach(function (c) {
+      var h = c.querySelector('h3');
+      if (h && h.textContent.trim().toLowerCase().indexOf(name.toLowerCase().split(' ')[0]) === 0) {
+        c.classList.add('svc-flash');
+        setTimeout(function () { c.classList.remove('svc-flash'); }, 1600);
+      }
+    });
+  }
+
+  function setActiveNav(idx) {
+    if (idx === currentIdx) return;
+    currentIdx = idx;
+    navItems.forEach(function (item) {
+      if (parseInt(item.getAttribute('data-nav'), 10) === idx) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  // IntersectionObserver: mark the page fully in view as 'in-view',
+  // and any page whose top has scrolled above the viewport as 'exiting'
+  // so its heading/body slide out to the right.
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var idx = pages.indexOf(entry.target);
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        entry.target.classList.add('in-view');
+        entry.target.classList.remove('exiting');
+        dots.forEach(function (d) { d.classList.remove('active'); });
+        if (dots[idx]) dots[idx].classList.add('active');
+        setActiveNav(idx);
+      } else if (entry.boundingClientRect.top < 0) {
+        // scrolled past upward -> exit to the right
+        entry.target.classList.remove('in-view');
+        entry.target.classList.add('exiting');
+      } else {
+        // below viewport, not yet reached -> reset for next entry
+        entry.target.classList.remove('in-view');
+        entry.target.classList.remove('exiting');
+      }
+    });
+  }, { threshold: [0.5] });
+
+  pages.forEach(function (p) { io.observe(p); });
+
+  // ---------- Quote form panel ----------
+  var overlay = document.getElementById('smt-overlay');
+  var freqField = document.getElementById('smt-frequency-field');
+  var selectedLabel = document.getElementById('smt-selected-label');
+  var descLabel = document.getElementById('smt-desc-label');
+  var descField = document.getElementById('smt-desc-field');
+  var lastTrigger = null;
+
+  function openQuotePanel(freq, trigger) {
+    if (!overlay) return;
+    lastTrigger = trigger || null;
+    if (freqField) freqField.value = freq;
+
+    if (freq === 'Monthly') {
+      selectedLabel.textContent = 'Monthly / Recurring Service';
+      descLabel.textContent = 'Briefly describe your ongoing needs (frequency, volume, sites, etc.) *';
+      descField.placeholder = 'e.g. Weekly sewage removal for 3 sites, approx. 5000L each';
+    } else {
+      selectedLabel.textContent = 'One-Time Service';
+      descLabel.textContent = 'Briefly describe what you need *';
+      descField.placeholder = 'e.g. Single sewage tank pickup, Al Qusais, ~3000L';
+    }
+
+    applyPendingService();
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+
+    // focus the first field so keyboard users land inside the panel
+    setTimeout(function () {
+      var first = document.getElementById('smt-service-select');
+      if (first) first.focus();
+    }, 320);
+  }
+  window.openQuotePanel = openQuotePanel;
+
+  function closeQuotePanel() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (lastTrigger) lastTrigger.focus();
+  }
+  window.closeQuotePanel = closeQuotePanel;
+
+  // the two service-type buttons open the panel
+  document.querySelectorAll('.smt-freq-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      openQuotePanel(btn.getAttribute('data-freq'), btn);
+    });
+  });
+
+  // click the dark backdrop to close
+  if (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeQuotePanel();
+    });
+  }
+
+  // Esc closes
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) closeQuotePanel();
+  });
+
+  /* ============================================================
+     QUOTE FORM SUBMISSION  →  n8n webhook
+     Set your n8n Production webhook URL here.
+     Test URL looks like:  https://<your-n8n>/webhook-test/smt-quote
+     Live URL looks like:  https://<your-n8n>/webhook/smt-quote
+  ============================================================ */
+  var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+
+  var quoteForm = document.getElementById('smt-quote-form');
+  var successPane = document.getElementById('smt-success');
+  var errorPane = document.getElementById('smt-error');
+  var submitBtn = document.querySelector('.panel-foot .btn-submit');
+
+  function clearFieldErrors() {
+    if (!quoteForm) return;
+    quoteForm.querySelectorAll('.field-error').forEach(function (el) { el.classList.remove('field-error'); });
+    quoteForm.querySelectorAll('.err-msg').forEach(function (el) { el.remove(); });
+  }
+
+  function showFieldError(field, msg) {
+    field.classList.add('field-error');
+    var m = document.createElement('div');
+    m.className = 'err-msg';
+    m.textContent = msg;
+    field.parentNode.appendChild(m);
+  }
+
+  function validateQuoteForm() {
+    clearFieldErrors();
+    var ok = true;
+    var firstBad = null;
+
+    [['service','Please choose a service'],
+     ['company','Please enter your company name'],
+     ['contact_name','Please enter a contact name'],
+     ['phone','Please enter a phone number'],
+     ['description','Please tell us what you need']
+    ].forEach(function (pair) {
+      var field = quoteForm.elements[pair[0]];
+      if (!field) return;
+      if (!field.value.trim()) {
+        showFieldError(field, pair[1]);
+        ok = false;
+        if (!firstBad) firstBad = field;
+      }
+    });
+
+    // light phone sanity check — digits only, at least 7 of them
+    var phone = quoteForm.elements['phone'];
+    if (phone && phone.value.trim()) {
+      var digits = phone.value.replace(/[^0-9]/g, '');
+      if (digits.length < 7) {
+        showFieldError(phone, 'Please enter a valid phone number');
+        ok = false;
+        if (!firstBad) firstBad = phone;
+      }
+    }
+
+    if (firstBad) firstBad.focus();
+    return ok;
+  }
+
+  function resetQuoteForm() {
+    if (errorPane) errorPane.hidden = true;
+    if (successPane) successPane.hidden = true;
+    if (quoteForm) quoteForm.hidden = false;
+    if (submitBtn) {
+      submitBtn.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request Quote';
+    }
+  }
+  window.resetQuoteForm = resetQuoteForm;
+
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // bot check — real people never fill the honeypot
+      if (quoteForm.elements['website'] && quoteForm.elements['website'].value) {
+        return;
+      }
+
+      if (!validateQuoteForm()) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      var payload = {
+        frequency:    (document.getElementById('smt-frequency-field') || {}).value || '',
+        service:      quoteForm.elements['service'].value,
+        company:      quoteForm.elements['company'].value.trim(),
+        contact_name: quoteForm.elements['contact_name'].value.trim(),
+        phone:        quoteForm.elements['phone'].value.trim(),
+        description:  quoteForm.elements['description'].value.trim(),
+        submitted_at: new Date().toISOString(),
+        source:       'salmanmohammadtransport.ae',
+        page_url:     window.location.href
+      };
+
+      fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        quoteForm.hidden = true;
+        submitBtn.hidden = true;
+        successPane.hidden = false;
+        quoteForm.reset();
+      })
+      .catch(function (err) {
+        console.error('Quote submission failed:', err);
+        quoteForm.hidden = true;
+        submitBtn.hidden = true;
+        errorPane.hidden = false;
+      });
+    });
+  }
+
+  // reopening the panel should always start from a clean form
+  var _openQuotePanel = openQuotePanel;
+  openQuotePanel = function (freq, trigger) {
+    resetQuoteForm();
+    _openQuotePanel(freq, trigger);
+  };
+  window.openQuotePanel = openQuotePanel;
+
+</script>
+
+
+
+</body>
+</html>
