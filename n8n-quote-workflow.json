@@ -7,7 +7,7 @@
         "path": "smt-quote",
         "responseMode": "responseNode",
         "options": {
-          "allowedOrigins": "https://salmanmohammadtransport.ae,https://www.salmanmohammadtransport.ae"
+          "allowedOrigins": "https://yourdomain.com"
         }
       },
       "id": "webhook-in",
@@ -86,25 +86,6 @@
     },
     {
       "parameters": {
-        "resource": "message",
-        "operation": "create",
-        "teamId": "REPLACE_WITH_YOUR_TEAM_ID",
-        "channelId": "REPLACE_WITH_YOUR_CHANNEL_ID",
-        "contentType": "html",
-        "message": "=<b>{{ $json.isContract ? '📋 Contract Enquiry' : '🚚 One-Time Job' }}</b><br><br><b>{{ $json.company }}</b> — {{ $json.service }}<br>Contact: {{ $json.contact_name }} · {{ $json.phone }} · {{ $json.email }}<br><br><i>{{ $json.description }}</i>",
-        "options": {}
-      },
-      "id": "teams-notify",
-      "name": "Notify Teams Channel",
-      "type": "n8n-nodes-base.microsoftTeams",
-      "typeVersion": 2,
-      "position": [
-        460,
-        400
-      ]
-    },
-    {
-      "parameters": {
         "respondWith": "json",
         "responseBody": "={{ JSON.stringify({ ok: true }) }}",
         "options": {
@@ -112,7 +93,7 @@
             "entries": [
               {
                 "name": "Access-Control-Allow-Origin",
-                "value": "https://salmanmohammadtransport.ae"
+                "value": "https://yourdomain.com"
               }
             ]
           }
@@ -172,11 +153,6 @@
         [
           {
             "node": "Email Sales Team",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Notify Teams Channel",
             "type": "main",
             "index": 0
           }

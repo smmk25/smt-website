@@ -823,15 +823,15 @@
               <div class="svc-body"><h3>Sewage Removal</h3><p>Safe, hygienic collection &amp; disposal, fully compliant.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&q=80" alt="Sweet water"></div>
+              <div class="img-wrap"><img src="assets/services/sweet-water.jpg" alt="Sweet water tanker"></div>
               <div class="svc-body"><h3>Sweet Water Tanker</h3><p>High-quality delivery for pools, sites &amp; homes.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="assets/services/salt-water.jpg" alt="Salt water tanker"></div>
+              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1439405326854-014607f694d7?w=500&q=80" alt="Salt water supply"></div>
               <div class="svc-body"><h3>Salt Water Tanker</h3><p>Reliable supply for compaction &amp; piling works.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=80" alt="Waste management"></div>
+              <div class="img-wrap"><img src="assets/services/waste-management.jpg" alt="Waste collection and skip loading"></div>
               <div class="svc-body"><h3>Waste Management</h3><p>End-to-end collection &amp; disposal services.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
           </div>
@@ -1003,6 +1003,7 @@
         <div><label>Company Name *</label><input type="text" name="company" required></div>
         <div><label>Contact Person Name *</label><input type="text" name="contact_name" required></div>
         <div><label>Phone Number *</label><input type="tel" name="phone" required placeholder="+971 5X XXX XXXX"></div>
+        <div><label>Email Address *</label><input type="email" name="email" required placeholder="name@company.com" autocomplete="email"></div>
         <div><label id="smt-desc-label">Briefly describe what you need *</label><textarea name="description" required rows="3" id="smt-desc-field"></textarea></div>
       </form>
 
@@ -1246,7 +1247,7 @@
      Test URL looks like:  https://<your-n8n>/webhook-test/smt-quote
      Live URL looks like:  https://<your-n8n>/webhook/smt-quote
   ============================================================ */
-  var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+  var N8N_WEBHOOK_URL = 'https://salmanmk.app.n8n.cloud/webhook-test/smt-quote';
 
   var quoteForm = document.getElementById('smt-quote-form');
   var successPane = document.getElementById('smt-success');
@@ -1276,6 +1277,7 @@
      ['company','Please enter your company name'],
      ['contact_name','Please enter a contact name'],
      ['phone','Please enter a phone number'],
+     ['email','Please enter an email address'],
      ['description','Please tell us what you need']
     ].forEach(function (pair) {
       var field = quoteForm.elements[pair[0]];
@@ -1287,14 +1289,50 @@
       }
     });
 
-    // light phone sanity check — digits only, at least 7 of them
+    // UAE phone validation.
+    // Accepts:  050 123 4567   0501234567   +971 50 123 4567
+    //           00971501234567  04 580 6482  (landline)
+    // Mobile prefixes: 50 52 54 55 56 58   Landline area codes: 2 3 4 6 7 9
     var phone = quoteForm.elements['phone'];
     if (phone && phone.value.trim()) {
-      var digits = phone.value.replace(/[^0-9]/g, '');
-      if (digits.length < 7) {
-        showFieldError(phone, 'Please enter a valid phone number');
+      var raw = phone.value.replace(/[\s\-().]/g, '');
+      var national = null;
+
+      if (/^\+971\d+$/.test(raw))      national = raw.slice(4);
+      else if (/^00971\d+$/.test(raw)) national = raw.slice(5);
+      else if (/^971\d+$/.test(raw))   national = raw.slice(3);
+      else if (/^0\d+$/.test(raw))     national = raw.slice(1);
+      else if (/^\d+$/.test(raw))      national = raw;
+
+      var validMobile   = national && /^5[024568]\d{7}$/.test(national);   // 9 digits
+      var validLandline = national && /^[234679]\d{7}$/.test(national);    // 8 digits
+
+      if (!national) {
+        showFieldError(phone, 'Please enter a valid UAE number, e.g. 050 123 4567');
         ok = false;
         if (!firstBad) firstBad = phone;
+      } else if (!validMobile && !validLandline) {
+        var msg = 'Please enter a valid UAE number, e.g. 050 123 4567 or 04 580 6482';
+        if (national.length > 9) msg = 'That number has too many digits — UAE numbers are 10 digits, e.g. 050 123 4567';
+        else if (national.length < 8) msg = 'That number is too short for a UAE number';
+        showFieldError(phone, msg);
+        ok = false;
+        if (!firstBad) firstBad = phone;
+      } else {
+        // normalise to full international form so every lead arrives consistent
+        phone.dataset.normalised = '+971' + national;
+      }
+    }
+
+    // email format check
+    var email = quoteForm.elements['email'];
+    if (email && email.value.trim()) {
+      var ev = email.value.trim();
+      // one @, something before it, a dot-suffixed domain after it, no spaces
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)) {
+        showFieldError(email, 'Please enter a valid email address, e.g. name@company.com');
+        ok = false;
+        if (!firstBad) firstBad = email;
       }
     }
 
@@ -1313,6 +1351,20 @@
     }
   }
   window.resetQuoteForm = resetQuoteForm;
+
+  // keep the phone field to digits, spaces and a leading +, and cap the length
+  var phoneEl = quoteForm && quoteForm.elements['phone'];
+  if (phoneEl) {
+    phoneEl.setAttribute('inputmode', 'tel');
+    phoneEl.setAttribute('maxlength', '17');
+    phoneEl.addEventListener('input', function () {
+      var v = phoneEl.value;
+      var cleaned = v.replace(/[^\d+\s]/g, '');
+      if (cleaned.indexOf('+') > 0) cleaned = cleaned.replace(/\+/g, '');
+      if (cleaned !== v) phoneEl.value = cleaned;
+      delete phoneEl.dataset.normalised;
+    });
+  }
 
   if (quoteForm) {
     quoteForm.addEventListener('submit', function (e) {
@@ -1333,7 +1385,9 @@
         service:      quoteForm.elements['service'].value,
         company:      quoteForm.elements['company'].value.trim(),
         contact_name: quoteForm.elements['contact_name'].value.trim(),
-        phone:        quoteForm.elements['phone'].value.trim(),
+        phone:        quoteForm.elements['phone'].dataset.normalised || quoteForm.elements['phone'].value.trim(),
+        phone_entered: quoteForm.elements['phone'].value.trim(),
+        email:        quoteForm.elements['email'].value.trim(),
         description:  quoteForm.elements['description'].value.trim(),
         submitted_at: new Date().toISOString(),
         source:       'salmanmohammadtransport.ae',
