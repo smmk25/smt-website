@@ -1654,6 +1654,9 @@
 
   function closeMenu() {
     if (!mobileMenu) return;
+    // aria-hidden can't be set on an element that still contains focus —
+    // return focus to the button that opened the menu first
+    if (mobileMenu.contains(document.activeElement)) burger.focus();
     if (mmBackdrop) mmBackdrop.classList.remove('open');
     mobileMenu.classList.remove('open');
     mobileMenu.setAttribute('aria-hidden', 'true');
