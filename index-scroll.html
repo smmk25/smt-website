@@ -10,6 +10,8 @@
 <link rel="manifest" href="assets/favicon/site.webmanifest">
 <meta name="theme-color" content="#BB0408">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <title>Salman Mohammad Transport LLC | Sewage Removal & Water Supply Dubai</title>
 <style>
   /* ---------- Montserrat (self-hosted variable font) ---------- */
@@ -39,10 +41,13 @@
     --smt-red-bright: #E4141A;
     --smt-green-bright: #2E9B54;
     --ink: #14161A;
-    --muted: #5B6167;
+    --muted: #2B2F33;   /* darker for readability */
     --line: #E6E8EA;
     --bg-soft: #F6F7F8;
+    --bg-panel: #EDEFF1;   /* splash + footer surface */
   }
+  :root { color-scheme: light only; }
+  html { -webkit-text-size-adjust: 100%; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -328,7 +333,12 @@
   @keyframes bob { 0%,100%{ transform: translate(-50%,0);} 50%{ transform: translate(-50%,8px);} }
 
   /* ---------- About ---------- */
+  #page-about { background: var(--smt-black); }
   #page-about .page-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 0 24px; max-width: 1180px; margin: 0 auto; }
+  #page-about h2 { color: #F2F4F5; }
+  #page-about h2 .r { color: #FF4A4F; }
+  #page-about .eyebrow { color: #FF4A4F; }
+  #page-about .eyebrow::before { background: #FF4A4F; }
   .eyebrow {
     color: var(--smt-red); font-weight: 800; font-size: 13px; letter-spacing: 0.08em;
     display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
@@ -336,7 +346,7 @@
   .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--smt-red); display: inline-block; }
   #page-about h2 { font-size: 34px; font-weight: 800; margin-bottom: 18px; line-height: 1.25; }
   #page-about h2 .r { color: var(--smt-red); }
-  #page-about p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
+  #page-about p { color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
 
   /* ---------- About image slideshow ---------- */
   .about-slider {
@@ -390,12 +400,12 @@
   #page-about img { border-radius: 8px; }
 
   /* ---------- Services ---------- */
-  #page-services { background: var(--bg-soft); }
+  #page-services { background: var(--bg-soft); color: var(--ink); }
   #page-services .page-inner { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
   .services-head { text-align: center; max-width: 640px; margin: 0 auto 28px; }
   .services-head h2 { font-size: 30px; font-weight: 800; margin-bottom: 10px; }
   .services-head h2 .g { color: var(--smt-green); }
-  .services-head p { color: var(--muted); font-size: 15px; }
+  .services-head p { color: #2B2F33; font-size: 15px; }
 
   .svc-category { margin-bottom: 26px; }
   .svc-category:last-child { margin-bottom: 0; }
@@ -410,7 +420,7 @@
   }
   .cat-badge-green { background: var(--smt-green); }
   .cat-badge-red { background: var(--smt-red); }
-  .cat-desc { font-size: 13px; color: var(--muted); }
+  .cat-desc { font-size: 13px; color: #2B2F33; }
   .cat-head::after {
     content: ""; flex: 1; height: 1px; background: var(--line); min-width: 20px;
   }
@@ -430,24 +440,27 @@
   .svc-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .svc-body { padding: 14px; }
   .svc-body h3 { font-size: 14px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
-  .svc-body p { color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 10px; }
+  .svc-body p { color: #2B2F33; font-size: 12px; line-height: 1.5; margin-bottom: 10px; }
   .svc-link { color: var(--smt-red); font-weight: 700; font-size: 12px; }
 
   /* ---------- Quote / Contact page ---------- */
+  #page-quote { background: #fff; }
+  #page-quote h2 { color: var(--ink); }
+  #page-quote #smt-step1-sub { color: #2B2F33; }
   #page-quote .page-inner { max-width: 640px; margin: 0 auto; padding: 0 24px; }
   #smt-page-back {
     display: inline-flex; align-items: center; gap: 6px; color: var(--ink); background: var(--bg-soft);
     border: 1px solid var(--line); border-radius: 20px; padding: 8px 16px; font-size: 13px; cursor: pointer; margin-bottom: 18px;
   }
   #page-quote h2 { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
-  #smt-step1-sub { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
+  #smt-step1-sub { color: #2B2F33; margin-bottom: 20px; font-size: 15px; }
   #smt-step1 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .smt-freq-btn {
     padding: 22px 16px; background: var(--bg-soft); border: 2px solid var(--line); border-radius: 10px;
     color: var(--ink); font-size: 15px; font-weight: 800; cursor: pointer; text-align: left;
   }
   .smt-freq-btn:hover { border-color: var(--smt-red); }
-  .smt-freq-btn .desc { font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .smt-freq-btn .desc { font-weight: 500; font-size: 12px; color: #2B2F33; margin-top: 6px; }
   #smt-selected-label {
     display: inline-block; padding: 5px 12px; background: rgba(200,16,46,0.08);
     border: 1px solid var(--smt-red); border-radius: 20px; font-size: 12px; color: var(--smt-red);
@@ -466,7 +479,7 @@
   }
 
   /* ---------- Clients page ---------- */
-  #page-clients { background: var(--bg-soft); }
+  #page-clients { background: var(--bg-soft); color: var(--ink); }
   #page-clients .page-inner { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
   .client-grid {
     /* flex rather than grid, so a partial final row stays centred
@@ -637,8 +650,9 @@
 
   /* ---------- Footer (normal flow, not snapped) ---------- */
   footer {
-    background: var(--smt-black);
-    color: #fff;
+    background: var(--bg-panel);
+    color: var(--ink);
+    border-top: 1px solid var(--line);
     scroll-snap-align: end;
     min-height: 100vh;
     display: flex;
@@ -649,37 +663,39 @@
     display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
     padding: 40px 24px; background: var(--smt-green);
   }
-  .foot-cta h3 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-  .foot-cta p { opacity: 0.9; font-size: 14px; }
+  .foot-cta { color: #fff; }
+  .foot-cta h3 { font-size: 22px; font-weight: 800; margin-bottom: 4px; color: #fff; }
+  .foot-cta p { font-size: 14px; color: rgba(255,255,255,0.92); }
   .cta-call { background: #fff; color: var(--smt-red); padding: 13px 22px; border-radius: 6px; font-weight: 800; font-size: 14px; }
   .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding: 56px 24px 40px; max-width: 1180px; margin: 0 auto; }
   .foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .foot-brand .red { color: var(--smt-red); font-weight: 900; font-size: 20px; }
-  footer h4 { font-size: 15px; margin-bottom: 16px; }
+  footer h4 { font-size: 15px; margin-bottom: 16px; color: var(--ink); }
   footer h4::after { content: ""; display: block; width: 30px; height: 2px; background: var(--smt-red); margin-top: 8px; }
-  footer p, footer li { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 2; }
+  footer p, footer li { color: var(--muted); font-size: 14px; line-height: 2; }
   footer ul { list-style: none; }
   .foot-contact li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.7; margin-bottom: 10px; }
   .foot-contact .ico { color: var(--smt-red); flex-shrink: 0; margin-top: 3px; }
-  .foot-contact a { color: rgba(255,255,255,0.65); text-decoration: none; }
-  .foot-contact a:hover { color: #fff; }
+  .foot-contact a { color: var(--muted); text-decoration: none; }
+  .foot-contact a:hover { color: var(--smt-red); }
   .foot-social { display: flex; gap: 10px; margin-top: 18px; }
   .foot-social a {
     width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.06);
     display: flex; align-items: center; justify-content: center;
-    color: #fff; transition: background 0.25s ease;
+    color: var(--ink); transition: background 0.25s ease, color 0.25s ease;
   }
-  .foot-social a:hover { background: var(--smt-red); }
+  .foot-social a:hover { background: var(--smt-red); color: #fff; }
   .foot-social svg { width: 16px; height: 16px; fill: currentColor; }
-  .foot-bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+  .foot-bottom { border-top: 1px solid var(--line); text-align: center; padding: 20px; font-size: 13px; color: var(--muted); }
 
   @media (max-width: 1150px) and (min-width: 901px) {
     .svc-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 900px) {
-    nav, .call-btn, .progress-dots { display: none; }
+    header nav, .call-btn, .progress-dots { display: none; }
+    .mobile-menu .mm-nav { display: block; }
     .hero-inner h1 { font-size: 32px; }
     #page-about .page-inner, .svc-grid, .foot-grid { grid-template-columns: 1fr; }
     #smt-step1 { grid-template-columns: 1fr; }
@@ -691,9 +707,297 @@
     body { height: auto; overflow: auto; }
     footer { min-height: 0; display: block; }
   }
+
+  /* ============================================================
+     MOBILE
+     Desktop keeps scroll-snap; phones get normal scrolling,
+     a slide-out menu, and a sticky call/quote bar.
+  ============================================================ */
+  .burger { display: none; }
+  .mobile-menu { display: none; }
+
+  @media (max-width: 900px) {
+    /* ---- header ---- */
+    header { padding: 10px 14px; }
+    .brand img { height: 26px; }
+    .brand .divider { display: none; }
+    .brand > div > div:first-child { font-size: 12px !important; letter-spacing: 0 !important; }
+    .brand > div > div:last-child { font-size: 9px !important; letter-spacing: 0.1em !important; }
+
+    .burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; padding: 0 10px;
+      background: none; border: none; cursor: pointer; flex-shrink: 0;
+    }
+    .burger span {
+      display: block; height: 2px; width: 100%; background: var(--ink);
+      border-radius: 2px; transition: transform .3s ease, opacity .2s ease;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+    /* ---- menu header: back + close ---- */
+    .mm-head {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 12px 16px;
+      background: #fff; border-bottom: 1px solid var(--line);
+      margin-top: calc(-1 * max(76px, calc(56px + env(safe-area-inset-top))));
+      margin-bottom: 8px;
+      padding-top: max(12px, calc(8px + env(safe-area-inset-top)));
+    }
+    .mm-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 20px; padding: 10px 18px; min-height: 44px;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+      font-family: inherit; cursor: pointer;
+    }
+    .mm-back:active { background: #e4e6e8; }
+    .mm-close {
+      background: none; border: none; font-size: 30px; line-height: 1;
+      color: var(--muted); cursor: pointer;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ---- slide-out menu ---- */
+    .mobile-menu {
+      display: block;
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: min(84vw, 340px);
+      background: #fff; z-index: 400;
+      transform: translateX(100%);
+      transition: transform .32s cubic-bezier(.22,1,.36,1);
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+      box-shadow: -8px 0 30px rgba(0,0,0,.18);
+      padding: 76px 0 32px;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mm-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.45);
+      z-index: 350; opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
+    }
+    .mm-backdrop.open { opacity: 1; visibility: visible; }
+
+    .mm-item {
+      display: block; width: 100%; text-align: left;
+      padding: 15px 22px; font-size: 16px; font-weight: 700;
+      background: none; border: none; border-bottom: 1px solid var(--line);
+      color: var(--ink); font-family: inherit; cursor: pointer;
+    }
+    .mm-toggle { display: flex; align-items: center; justify-content: space-between; }
+    .mm-chev {
+      font-size: 20px; line-height: 1; color: var(--muted);
+      transition: transform .28s ease;
+    }
+    .mm-toggle[aria-expanded="true"] .mm-chev { transform: rotate(90deg); color: var(--smt-red); }
+    .mm-toggle[aria-expanded="true"] { color: var(--smt-red); }
+
+    .mm-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height .34s cubic-bezier(.4,0,.2,1);
+      background: var(--bg-soft);
+    }
+    .mm-panel.open { max-height: 700px; }
+    .mm-panel-inner { background: #fff; }
+
+    .mm-cat {
+      display: flex; width: 100%; text-align: left;
+      padding: 13px 22px; font-size: 14px; font-weight: 800;
+      background: none; border: none; border-bottom: 1px solid var(--line);
+      color: var(--ink); font-family: inherit; cursor: pointer;
+    }
+    .mm-sub {
+      display: block; width: 100%; text-align: left;
+      padding: 12px 22px 12px 34px; font-size: 15px; font-weight: 500;
+      background: none; border: none; color: var(--muted);
+      font-family: inherit; cursor: pointer;
+    }
+    .mm-sub:active { background: var(--bg-soft); }
+    .mm-call {
+      display: block; margin: 18px 22px 0; padding: 14px;
+      background: var(--smt-green); color: #fff; text-align: center;
+      border-radius: 8px; font-weight: 800; font-size: 15px;
+    }
+    .mm-call.secondary { background: var(--bg-soft); color: var(--ink); margin-top: 10px; }
+
+    /* ---- footer clearance for the floating button ---- */
+    footer { padding-bottom: 90px; }
+
+    /* ---- layout ---- */
+    header nav, .call-btn, .progress-dots { display: none; }
+    .mobile-menu .mm-nav { display: block; }
+    .snap-container { height: auto; overflow: visible; scroll-snap-type: none; }
+    body { height: auto; overflow: auto; }
+    .page { height: auto !important; min-height: 0 !important; padding: 68px 0 40px; display: block; }
+    #page-home { padding: 84px 0 48px; }
+    footer { min-height: 0; display: block; }
+
+    /* no exit-right animation on mobile — it reads as broken when scrolling freely */
+    .page.exiting .section-heading,
+    .page.exiting .section-body { opacity: 1; transform: none; }
+    .section-heading, .section-body { opacity: 1; transform: none; }
+
+    /* ---- typography ---- */
+    .hero-inner h1 { font-size: 30px; line-height: 1.15; }
+    .hero-inner p.sub { font-size: 15px; }
+    .pill { font-size: 11px; padding: 6px 12px; }
+    #page-about h2, .services-head h2 { font-size: 24px; }
+    #page-about p { font-size: 15px; }
+    #page-quote h2 { font-size: 24px; }
+    .foot-cta h3 { font-size: 19px; }
+
+    /* ---- grids ---- */
+    #page-about .page-inner, .foot-grid { grid-template-columns: 1fr; gap: 26px; }
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .svc-card .img-wrap { height: 82px; }
+    .svc-body { padding: 12px; }
+    .svc-body h3 { font-size: 13px; }
+    .svc-body p { font-size: 11px; }
+    #smt-step1 { grid-template-columns: 1fr; }
+    .client-logo { flex: 0 1 132px; height: 76px; padding: 10px; }
+    .client-logo img { max-height: 42px; }
+    .client-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .client-stats .num { font-size: 24px; }
+
+    /* ---- about slider ---- */
+    .about-slider .slides { aspect-ratio: 4 / 3; }
+    .slide-nav { width: 34px; height: 34px; font-size: 19px; }
+
+    /* ---- hero buttons sit side by side, sized to their text ---- */
+    .hero-ctas { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+    .hero-ctas .btn-primary, .hero-ctas .btn-outline {
+      width: auto; flex: 0 0 auto;
+      padding: 13px 20px; font-size: 14px;
+    }
+
+    /* ---- scroll hint would collide with the sticky bar ---- */
+    .scroll-hint { display: none; }
+  }
+
+  /* very small phones */
+  @media (max-width: 380px) {
+    .hero-inner h1 { font-size: 26px; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .brand > div > div:first-child { font-size: 11px !important; }
+  }
+
+  /* prevent iOS zooming in when a field is focused */
+  @media (max-width: 900px) {
+    #smt-panel input, #smt-panel textarea, #smt-panel select { font-size: 16px; }
+  }
+
+
+
+
+  /* ============================================================
+     Mobile viewport standards (iOS + Android)
+     - dvh so browser chrome appearing/hiding doesn't jump layout
+     - safe-area padding for notches and home indicators
+     - fluid type so text scales with the screen, not fixed steps
+  ============================================================ */
+  @supports (height: 100dvh) {
+    @media (min-width: 901px) {
+      .snap-container { height: 100dvh; }
+      .page { height: 100dvh; }
+    }
+  }
+
+  @media (max-width: 900px) {
+    header {
+      padding-left: max(14px, env(safe-area-inset-left));
+      padding-right: max(14px, env(safe-area-inset-right));
+    }
+    .page-inner, #page-about .page-inner, #page-services .page-inner,
+    #page-clients .page-inner, #page-quote .page-inner, .hero-inner {
+      padding-left: max(18px, env(safe-area-inset-left));
+      padding-right: max(18px, env(safe-area-inset-right));
+    }
+    .foot-grid, .foot-cta, .foot-bottom {
+      padding-left: max(18px, env(safe-area-inset-left));
+      padding-right: max(18px, env(safe-area-inset-right));
+    }
+    .mobile-menu { padding-top: max(76px, calc(56px + env(safe-area-inset-top))); }
+
+    /* fluid type — scales smoothly between small and large phones */
+    .hero-inner h1 { font-size: clamp(24px, 7.4vw, 34px); }
+    .hero-inner p.sub { font-size: clamp(14px, 3.9vw, 16px); }
+    #page-about h2, .services-head h2 { font-size: clamp(20px, 6vw, 26px); }
+    #page-quote h2 { font-size: clamp(20px, 6vw, 26px); }
+    .foot-cta h3 { font-size: clamp(17px, 5vw, 21px); }
+
+    /* every tap target at least 44px, the iOS/Android minimum */
+    .mm-item, .mm-cat, .mm-sub, .svc-link, .slide-dots button { min-height: 44px; }
+    .slide-dots button { width: 10px; height: 10px; min-height: 0; padding: 12px; background-clip: content-box; }
+  }
+
+
+  /* ============================================================
+     Floating "Contact us" button — desktop and mobile.
+     Tap to reveal Call / WhatsApp; hides once the footer
+     (with its own contact details) scrolls into view.
+  ============================================================ */
+  .fab-wrap {
+    position: fixed;
+    right: 22px;
+    bottom: calc(22px + env(safe-area-inset-bottom));
+    z-index: 320;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    transition: opacity .3s ease, visibility .3s ease, transform .3s ease;
+  }
+  .fab-wrap.at-contact { opacity: 0; visibility: hidden; transform: translateY(12px); }
+
+  .fab-actions {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    opacity: 0; visibility: hidden; transform: translateY(10px) scale(.96);
+    transform-origin: bottom right;
+    transition: opacity .25s ease, transform .28s cubic-bezier(.22,1,.36,1), visibility .25s ease;
+  }
+  .fab-wrap.open .fab-actions { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+  .fab-action {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 46px; padding: 0 18px; border-radius: 23px;
+    font-size: 14px; font-weight: 800; color: #fff; text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,.22);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .fab-action svg { width: 20px; height: 20px; fill: currentColor; }
+  .fab-action:active { transform: scale(.97); }
+  .fab-wa-action { background: #25D366; }
+  .fab-call-action { background: var(--smt-green); }
+
+  .fab {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 56px; padding: 0 20px;
+    border: none; border-radius: 28px;
+    background: var(--smt-green); color: #fff;
+    cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 800;
+    box-shadow: 0 6px 20px rgba(0,0,0,.24);
+    transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease, background .2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .fab svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+  .fab:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+  .fab:active { transform: translateY(0) scale(.97); }
+  .fab-icon-main { transition: transform .3s cubic-bezier(.22,1,.36,1); }
+  .fab[aria-expanded="true"] { background: var(--smt-red); }
+  .fab[aria-expanded="true"] .fab-icon-main { transform: rotate(135deg); }
+
+  @media (max-width: 900px) {
+    .fab-wrap { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+    .fab { height: 52px; padding: 0 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fab-wrap, .fab-actions, .fab { transition: none; }
+  }
+
 </style>
 </head>
 <body>
+
 
 <header>
   <div class="brand" onclick="goTo(0)">
@@ -741,7 +1045,82 @@
   </nav>
   <div class="header-page-label" id="headerLabel" style="display:none;"></div>
   <a href="tel:+971559449223" class="call-btn">📞 +971 55 944 9223</a>
+
+  <!-- mobile menu button -->
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- mobile slide-out menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-head">
+    <button type="button" class="mm-back" onclick="menuBack()" aria-label="Back">
+      <span aria-hidden="true">←</span> Back
+    </button>
+    <button type="button" class="mm-close" onclick="closeMenu()" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="mm-nav">
+    <button class="mm-item" onclick="mobileGo(0)">Home</button>
+    <button class="mm-item" onclick="mobileGo(1)">About Us</button>
+
+    <!-- Services: collapses to two categories -->
+    <button class="mm-item mm-toggle" onclick="toggleAccordion(this,'acc-services')" aria-expanded="false">
+      Services <span class="mm-chev">›</span>
+    </button>
+    <div class="mm-panel" id="acc-services">
+
+      <button class="mm-cat mm-toggle" onclick="toggleAccordion(this,'acc-env')" aria-expanded="false">
+        Environmental Services <span class="mm-chev">›</span>
+      </button>
+      <div class="mm-panel mm-panel-inner" id="acc-env">
+        <button class="mm-sub" onclick="mobileService('Sewage Removal')">Sewage Removal</button>
+        <button class="mm-sub" onclick="mobileService('Sweet Water Supply')">Sweet Water Supply</button>
+        <button class="mm-sub" onclick="mobileService('Salt Water Supply')">Salt Water Supply</button>
+        <button class="mm-sub" onclick="mobileService('Potable Water Supply')">Potable Water Supply</button>
+        <button class="mm-sub" onclick="mobileService('TSE Water Supply')">TSE Water Supply</button>
+        <button class="mm-sub" onclick="mobileService('Waste Management')">Waste Management</button>
+      </div>
+
+      <button class="mm-cat mm-toggle" onclick="toggleAccordion(this,'acc-frt')" aria-expanded="false">
+        Freight Services <span class="mm-chev">›</span>
+      </button>
+      <div class="mm-panel mm-panel-inner" id="acc-frt">
+        <button class="mm-sub" onclick="mobileService('Container Hauling')">Container Hauling</button>
+        <button class="mm-sub" onclick="mobileService('Diesel Supply')">Diesel Supply</button>
+      </div>
+
+    </div>
+
+    <button class="mm-item" onclick="mobileGo(3)">Our Clients</button>
+    <button class="mm-item" onclick="mobileGo(4)">Contact</button>
+    <a href="tel:+971559449223" class="mm-call">📞 +971 55 944 9223</a>
+    <a href="tel:+97145806482" class="mm-call secondary">📞 04 580 6482</a>
+  </nav>
+</div>
+
+<!-- Combined contact button: tap to reveal Call / WhatsApp -->
+<div class="fab-wrap" id="fabWrap">
+  <div class="fab-actions" id="fabActions">
+    <a class="fab-action fab-wa-action"
+       href="https://wa.me/message/RNEF42WRMKX4E1"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8C11.6 28.4 13.8 29 16 29c7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.5 10.5 0 015.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.6 8.6 0 01-2.5-1.6 9.6 9.6 0 01-1.8-2.2c-.2-.3 0-.5.1-.7l.5-.6.3-.5v-.5c0-.2-.7-1.7-1-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 00-.9.4A3.6 3.6 0 009.4 14a6.3 6.3 0 001.3 3.3 14.3 14.3 0 005.5 4.9c.8.3 1.4.5 1.8.7a4.4 4.4 0 002 .1 3.3 3.3 0 002.1-1.5 2.7 2.7 0 00.2-1.5c-.1-.2-.3-.2-.5-.3z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a class="fab-action fab-call-action" href="tel:+971559449223">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></svg>
+      <span>Call Now</span>
+    </a>
+  </div>
+
+  <button class="fab" id="fab" onclick="toggleFab()" aria-expanded="false" aria-label="Contact us">
+    <svg class="fab-icon-main" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/>
+    </svg>
+    <span>Contact us</span>
+  </button>
+</div>
 
 <div class="snap-container" id="snapContainer">
 
@@ -754,8 +1133,8 @@
       <div class="section-body">
         <p class="sub">From sewage removal, water supply and waste management to container haulage and on-site diesel — one licensed partner covering every requirement across Dubai and the UAE, 24/7.</p>
         <div class="hero-ctas">
-          <button class="btn-primary" onclick="goTo(4)">Request a Quote</button>
-          <a href="tel:+971559449223" class="btn-outline">Call Now</a>
+          <button class="btn-primary" onclick="openQuoteFromHero()">Request a Quote</button>
+          <button class="btn-outline" onclick="goTo(4)">Call Now</button>
         </div>
       </div>
     </div>
@@ -823,15 +1202,15 @@
               <div class="svc-body"><h3>Sewage Removal</h3><p>Safe, hygienic collection &amp; disposal, fully compliant.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=500&q=80" alt="Sweet water"></div>
+              <div class="img-wrap"><img src="assets/services/sweet-water.jpg" alt="Sweet water tanker"></div>
               <div class="svc-body"><h3>Sweet Water Tanker</h3><p>High-quality delivery for pools, sites &amp; homes.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="assets/services/salt-water.jpg" alt="Salt water tanker"></div>
+              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1439405326854-014607f694d7?w=500&q=80" alt="Salt water supply"></div>
               <div class="svc-body"><h3>Salt Water Tanker</h3><p>Reliable supply for compaction &amp; piling works.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
             <div class="svc-card">
-              <div class="img-wrap"><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=500&q=80" alt="Waste management"></div>
+              <div class="img-wrap"><img src="assets/services/waste-management.jpg" alt="Waste collection and skip loading"></div>
               <div class="svc-body"><h3>Waste Management</h3><p>End-to-end collection &amp; disposal services.</p><a class="svc-link" href="#" onclick="goTo(4); return false;">Request Quote →</a></div>
             </div>
           </div>
@@ -921,13 +1300,14 @@
   <div class="foot-grid">
     <div>
       <div class="foot-brand">
-        <img src="assets/logo-white.svg" alt="Salman Mohammad Transport LLC" style="height:30px; width:auto;">
+        <img src="assets/logo.svg" alt="Salman Mohammad Transport LLC" style="height:30px; width:auto;">
       </div>
-      <p style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">SALMAN MOHAMMAD TRANSPORT LLC</p>
+      <p style="font-weight:700; color:var(--ink); font-size:14px; margin-bottom:10px;">SALMAN MOHAMMAD TRANSPORT LLC</p>
       <p>Experts you can trust. From waste &amp; sludge management to supplying water tanks, we are your reliable partner in Dubai.</p>
       <div class="foot-social">
+        <a href="https://wa.me/message/RNEF42WRMKX4E1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8C11.6 28.4 13.8 29 16 29c7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.5 10.5 0 015.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.6 8.6 0 01-2.5-1.6 9.6 9.6 0 01-1.8-2.2c-.2-.3 0-.5.1-.7l.5-.6.3-.5v-.5c0-.2-.7-1.7-1-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 00-.9.4A3.6 3.6 0 009.4 14a6.3 6.3 0 001.3 3.3 14.3 14.3 0 005.5 4.9c.8.3 1.4.5 1.8.7a4.4 4.4 0 002 .1 3.3 3.3 0 002.1-1.5 2.7 2.7 0 00.2-1.5c-.1-.2-.3-.2-.5-.3z"/></svg></a>
         <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.8-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg></a>
+        <a href="https://www.instagram.com/smt.dxb/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.8-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg></a>
         <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.9 21.4H3.3V9.7h3.6v11.7zM5.1 8.1A2.1 2.1 0 117.2 6a2.1 2.1 0 01-2.1 2.1zM21.4 21.4h-3.6v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H10V9.7h3.4v1.6h.1a3.8 3.8 0 013.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.5z"/></svg></a>
       </div>
     </div>
@@ -1003,6 +1383,7 @@
         <div><label>Company Name *</label><input type="text" name="company" required></div>
         <div><label>Contact Person Name *</label><input type="text" name="contact_name" required></div>
         <div><label>Phone Number *</label><input type="tel" name="phone" required placeholder="+971 5X XXX XXXX"></div>
+        <div><label>Email Address *</label><input type="email" name="email" required placeholder="name@company.com" autocomplete="email"></div>
         <div><label id="smt-desc-label">Briefly describe what you need *</label><textarea name="description" required rows="3" id="smt-desc-field"></textarea></div>
       </form>
 
@@ -1054,6 +1435,188 @@
         sub.classList.add('flip-left');
       }
     });
+  });
+
+
+
+
+
+  // Hero "Request a Quote": go to the contact page, then open the form panel
+  function openQuoteFromHero() {
+    goTo(4);
+    setTimeout(function () {
+      var btn = document.querySelector('.smt-freq-btn[data-freq="One-Time"]');
+      if (btn) btn.click();
+    }, 650);
+  }
+  window.openQuoteFromHero = openQuoteFromHero;
+
+
+  // ---------- Menu accordion ----------
+  function toggleAccordion(btn, panelId) {
+    var panel = document.getElementById(panelId);
+    if (!panel) return;
+    var isOpen = panel.classList.contains('open');
+
+    // close sibling panels at the same level
+    var parent = panel.parentElement;
+    if (parent) {
+      parent.querySelectorAll(':scope > .mm-panel.open').forEach(function (p) {
+        if (p !== panel) {
+          p.classList.remove('open');
+          var t = p.previousElementSibling;
+          if (t && t.classList.contains('mm-toggle')) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    panel.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+
+    // collapsing a parent collapses whatever is nested inside it
+    if (isOpen) {
+      panel.querySelectorAll('.mm-panel.open').forEach(function (p) {
+        p.classList.remove('open');
+        var t = p.previousElementSibling;
+        if (t && t.classList.contains('mm-toggle')) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+  window.toggleAccordion = toggleAccordion;
+
+  // reset the accordion whenever the menu closes
+  var _closeMenu = closeMenu;
+  closeMenu = function () {
+    document.querySelectorAll('.mm-panel.open').forEach(function (p) {
+      p.classList.remove('open');
+      var t = p.previousElementSibling;
+      if (t && t.classList.contains('mm-toggle')) t.setAttribute('aria-expanded', 'false');
+    });
+    _closeMenu();
+  };
+  window.closeMenu = closeMenu;
+
+
+  // Back inside the menu: step out of an open submenu first,
+  // and only close the whole menu once nothing is expanded.
+  function menuBack() {
+    var innerOpen = document.querySelector('.mm-panel-inner.open');
+    if (innerOpen) {
+      innerOpen.classList.remove('open');
+      var t = innerOpen.previousElementSibling;
+      if (t && t.classList.contains('mm-toggle')) t.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    var outerOpen = document.querySelector('#acc-services.open');
+    if (outerOpen) {
+      outerOpen.classList.remove('open');
+      var t2 = outerOpen.previousElementSibling;
+      if (t2 && t2.classList.contains('mm-toggle')) t2.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    closeMenu();
+  }
+  window.menuBack = menuBack;
+
+
+  function toggleFab() {
+    var wrap = document.getElementById('fabWrap');
+    var btn = document.getElementById('fab');
+    if (!wrap || !btn) return;
+    var open = wrap.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  }
+  window.toggleFab = toggleFab;
+
+  document.addEventListener('click', function (e) {
+    var wrap = document.getElementById('fabWrap');
+    if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target)) {
+      wrap.classList.remove('open');
+      document.getElementById('fab').setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    var wrap = document.getElementById('fabWrap');
+    if (e.key === 'Escape' && wrap) {
+      wrap.classList.remove('open');
+      var b = document.getElementById('fab');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ---------- Floating "Contact us" button ----------
+  var fabWrapEl = document.getElementById('fabWrap');
+  if (fabWrapEl && footerEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        fabWrapEl.classList.toggle('at-contact', e.isIntersecting);
+      });
+    }, { threshold: 0.35 }).observe(footerEl);
+  }
+
+  // ---------- Mobile menu ----------
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mmBackdrop = null;
+
+  function ensureBackdrop() {
+    if (mmBackdrop) return mmBackdrop;
+    mmBackdrop = document.createElement('div');
+    mmBackdrop.className = 'mm-backdrop';
+    mmBackdrop.addEventListener('click', closeMenu);
+    document.body.appendChild(mmBackdrop);
+    return mmBackdrop;
+  }
+
+  function openMenu() {
+    if (!mobileMenu) return;
+    ensureBackdrop().classList.add('open');
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    if (!mobileMenu) return;
+    // aria-hidden can't be set on an element that still contains focus —
+    // return focus to the button that opened the menu first
+    if (mobileMenu.contains(document.activeElement)) burger.focus();
+    if (mmBackdrop) mmBackdrop.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function toggleMenu() {
+    if (mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
+    else openMenu();
+  }
+  window.toggleMenu = toggleMenu;
+  window.closeMenu = closeMenu;
+
+  // tapping a menu entry navigates then closes
+  function mobileGo(i) {
+    closeMenu();
+    setTimeout(function () { goTo(i); }, 260);
+  }
+  window.mobileGo = mobileGo;
+
+  function mobileService(name) {
+    closeMenu();
+    setTimeout(function () { selectService(name); }, 260);
+  }
+  window.mobileService = mobileService;
+
+  // close on Escape, and if the window is widened back to desktop
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) closeMenu();
   });
 
   // ---------- About image slideshow ----------
@@ -1246,7 +1809,7 @@
      Test URL looks like:  https://<your-n8n>/webhook-test/smt-quote
      Live URL looks like:  https://<your-n8n>/webhook/smt-quote
   ============================================================ */
-  var N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+  var N8N_WEBHOOK_URL = 'https://salmanmk.app.n8n.cloud/webhook/smt-quote';
 
   var quoteForm = document.getElementById('smt-quote-form');
   var successPane = document.getElementById('smt-success');
@@ -1276,6 +1839,7 @@
      ['company','Please enter your company name'],
      ['contact_name','Please enter a contact name'],
      ['phone','Please enter a phone number'],
+     ['email','Please enter an email address'],
      ['description','Please tell us what you need']
     ].forEach(function (pair) {
       var field = quoteForm.elements[pair[0]];
@@ -1287,14 +1851,50 @@
       }
     });
 
-    // light phone sanity check — digits only, at least 7 of them
+    // UAE phone validation.
+    // Accepts:  050 123 4567   0501234567   +971 50 123 4567
+    //           00971501234567  04 580 6482  (landline)
+    // Mobile prefixes: 50 52 54 55 56 58   Landline area codes: 2 3 4 6 7 9
     var phone = quoteForm.elements['phone'];
     if (phone && phone.value.trim()) {
-      var digits = phone.value.replace(/[^0-9]/g, '');
-      if (digits.length < 7) {
-        showFieldError(phone, 'Please enter a valid phone number');
+      var raw = phone.value.replace(/[\s\-().]/g, '');
+      var national = null;
+
+      if (/^\+971\d+$/.test(raw))      national = raw.slice(4);
+      else if (/^00971\d+$/.test(raw)) national = raw.slice(5);
+      else if (/^971\d+$/.test(raw))   national = raw.slice(3);
+      else if (/^0\d+$/.test(raw))     national = raw.slice(1);
+      else if (/^\d+$/.test(raw))      national = raw;
+
+      var validMobile   = national && /^5[024568]\d{7}$/.test(national);   // 9 digits
+      var validLandline = national && /^[234679]\d{7}$/.test(national);    // 8 digits
+
+      if (!national) {
+        showFieldError(phone, 'Please enter a valid UAE number, e.g. 050 123 4567');
         ok = false;
         if (!firstBad) firstBad = phone;
+      } else if (!validMobile && !validLandline) {
+        var msg = 'Please enter a valid UAE number, e.g. 050 123 4567 or 04 580 6482';
+        if (national.length > 9) msg = 'That number has too many digits — UAE numbers are 10 digits, e.g. 050 123 4567';
+        else if (national.length < 8) msg = 'That number is too short for a UAE number';
+        showFieldError(phone, msg);
+        ok = false;
+        if (!firstBad) firstBad = phone;
+      } else {
+        // normalise to full international form so every lead arrives consistent
+        phone.dataset.normalised = '+971' + national;
+      }
+    }
+
+    // email format check
+    var email = quoteForm.elements['email'];
+    if (email && email.value.trim()) {
+      var ev = email.value.trim();
+      // one @, something before it, a dot-suffixed domain after it, no spaces
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)) {
+        showFieldError(email, 'Please enter a valid email address, e.g. name@company.com');
+        ok = false;
+        if (!firstBad) firstBad = email;
       }
     }
 
@@ -1313,6 +1913,20 @@
     }
   }
   window.resetQuoteForm = resetQuoteForm;
+
+  // keep the phone field to digits, spaces and a leading +, and cap the length
+  var phoneEl = quoteForm && quoteForm.elements['phone'];
+  if (phoneEl) {
+    phoneEl.setAttribute('inputmode', 'tel');
+    phoneEl.setAttribute('maxlength', '17');
+    phoneEl.addEventListener('input', function () {
+      var v = phoneEl.value;
+      var cleaned = v.replace(/[^\d+\s]/g, '');
+      if (cleaned.indexOf('+') > 0) cleaned = cleaned.replace(/\+/g, '');
+      if (cleaned !== v) phoneEl.value = cleaned;
+      delete phoneEl.dataset.normalised;
+    });
+  }
 
   if (quoteForm) {
     quoteForm.addEventListener('submit', function (e) {
@@ -1333,7 +1947,9 @@
         service:      quoteForm.elements['service'].value,
         company:      quoteForm.elements['company'].value.trim(),
         contact_name: quoteForm.elements['contact_name'].value.trim(),
-        phone:        quoteForm.elements['phone'].value.trim(),
+        phone:        quoteForm.elements['phone'].dataset.normalised || quoteForm.elements['phone'].value.trim(),
+        phone_entered: quoteForm.elements['phone'].value.trim(),
+        email:        quoteForm.elements['email'].value.trim(),
         description:  quoteForm.elements['description'].value.trim(),
         submitted_at: new Date().toISOString(),
         source:       'salmanmohammadtransport.ae',

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/favicon/site.webmanifest">
+<meta name="theme-color" content="#BB0408">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salman Mohammad Transport</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-VariableFont_wght.woff2') format('woff2-variations'),
+         url('fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --smt-red: #BB0408;
+    --smt-black: #000000;
+    --smt-green: #01461A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    background: var(--smt-black);
+    overflow: hidden;
+  }
+  .splash {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .logo-wrap {
+    opacity: 0;
+    transform: scale(0.85);
+    animation: logoIn 0.9s ease-out forwards;
+  }
+  .logo-wrap img {
+    max-width: 360px;
+    width: 70vw;
+    height: auto;
+    display: block;
+  }
+  @keyframes logoIn {
+    to { opacity: 1; transform: scale(1); }
+  }
+  .bar {
+    width: 160px;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--smt-red), var(--smt-green));
+    animation: fill 1.6s ease-in-out forwards;
+    animation-delay: 0.3s;
+  }
+  @keyframes fill {
+    to { width: 100%; }
+  }
+  .tagline {
+    color: rgba(255,255,255,0.55);
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="splash">
+    <div class="logo-wrap">
+      <img src="assets/logo-white.svg" alt="Salman Mohammad Transport">
+    </div>
+    <div class="bar"></div>
+    <div class="tagline">Complete Transport &amp; Environmental Solutions</div>
+  </div>
+
+  <script>
+    // Auto-forward to the homepage after the animation plays.
+    // Change 'index.html' to whatever your homepage file is called.
+    var DESTINATION = "index-scroll.html";
+    var DELAY_MS = 2200;
+
+    setTimeout(function () {
+      window.location.href = DESTINATION;
+    }, DELAY_MS);
+
+    // Optional: skip the splash on repeat visits within the same session
+    // Uncomment below to only show this once per browser session:
+    // if (sessionStorage.getItem('smt_splash_seen')) {
+    //   window.location.href = DESTINATION;
+    // } else {
+    //   sessionStorage.setItem('smt_splash_seen', '1');
+    // }
+  </script>
+</body>
+</html>

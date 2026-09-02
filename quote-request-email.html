@@ -12,8 +12,9 @@
     <tr style="background:#f6f7f8"><td><b>Company</b></td><td>{{ $json.company }}</td></tr>
     <tr><td><b>Contact</b></td><td>{{ $json.contact_name }}</td></tr>
     <tr style="background:#f6f7f8"><td><b>Phone</b></td><td><a href="tel:{{ $json.phone }}" style="color:#54697A">{{ $json.phone }}</a></td></tr>
-    <tr><td valign="top"><b>Details</b></td><td>{{ $json.description }}</td></tr>
-    <tr style="background:#f6f7f8"><td><b>Received</b></td><td>{{ $json.received_at }}</td></tr>
+    <tr><td><b>Email</b></td><td><a href="mailto:{{ $json.email }}" style="color:#54697A">{{ $json.email }}</a></td></tr>
+    <tr style="background:#f6f7f8"><td valign="top"><b>Details</b></td><td>{{ $json.description }}</td></tr>
+    <tr><td><b>Received</b></td><td>{{ $json.received_at }}</td></tr>
   </table>
   <div style="padding:14px 20px;background:#111;color:#888;font-size:12px">
     Sent automatically from {{ $json.source }}
