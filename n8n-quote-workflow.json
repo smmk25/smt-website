@@ -7,7 +7,7 @@
         "path": "smt-quote",
         "responseMode": "responseNode",
         "options": {
-          "allowedOrigins": "https://yourdomain.com"
+          "allowedOrigins": "https://salmanmohammadtransport.ae,https://www.salmanmohammadtransport.ae"
         }
       },
       "id": "webhook-in",
