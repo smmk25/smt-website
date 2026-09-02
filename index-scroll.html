@@ -893,68 +893,12 @@
 
 
   /* ============================================================
-     Splash — plays once on load, then fades into the site.
-  ============================================================ */
-  #smt-splash {
-    position: fixed; inset: 0; z-index: 9999;
-    background: var(--bg-panel);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 26px;
-    transition: opacity .65s ease, visibility .65s ease;
-  }
-  #smt-splash.done { opacity: 0; visibility: hidden; }
-  #smt-splash .splash-logo {
-    opacity: 0; transform: scale(.88);
-    animation: splashLogoIn .9s cubic-bezier(.22,1,.36,1) forwards;
-  }
-  #smt-splash .splash-logo img {
-    max-width: 340px; width: 66vw; height: auto; display: block;
-  }
-  @keyframes splashLogoIn { to { opacity: 1; transform: scale(1); } }
-  #smt-splash .splash-bar {
-    width: 170px; height: 3px; background: rgba(0,0,0,.10);
-    border-radius: 2px; overflow: hidden;
-  }
-  #smt-splash .splash-bar::after {
-    content: ""; display: block; height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--smt-red), var(--smt-green-bright));
-    animation: splashFill 1.7s cubic-bezier(.5,0,.2,1) .25s forwards;
-  }
-  @keyframes splashFill { to { width: 100%; } }
-  #smt-splash .splash-tag {
-    color: var(--muted); font-size: 12px; letter-spacing: .16em;
-    text-transform: uppercase; font-weight: 600; text-align: center; padding: 0 20px;
-    opacity: 0; animation: splashFade .7s ease .5s forwards;
-  }
-  @keyframes splashFade { to { opacity: 1; } }
-  #smt-splash .splash-skip {
-    position: absolute; bottom: calc(26px + env(safe-area-inset-bottom));
-    background: none; border: 1px solid rgba(0,0,0,.18);
-    color: var(--muted); font-size: 11px; letter-spacing: .08em;
-    text-transform: uppercase; padding: 10px 20px; border-radius: 20px;
-    cursor: pointer; font-family: inherit;
-  }
-  #smt-splash .splash-skip:hover { color: var(--ink); border-color: rgba(0,0,0,.45); }
-  @media (max-width: 900px) {
-    #smt-splash .splash-logo img { max-width: 260px; width: 70vw; }
-    #smt-splash .splash-tag { font-size: 10px; letter-spacing: .12em; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #smt-splash .splash-logo { animation: none; opacity: 1; transform: none; }
-    #smt-splash .splash-bar::after { animation: none; width: 100%; }
-    #smt-splash .splash-tag { animation: none; opacity: 1; }
-  }
-
-
-
-  /* ============================================================
      Mobile viewport standards (iOS + Android)
      - dvh so browser chrome appearing/hiding doesn't jump layout
      - safe-area padding for notches and home indicators
      - fluid type so text scales with the screen, not fixed steps
   ============================================================ */
   @supports (height: 100dvh) {
-    #smt-splash { height: 100dvh; }
     @media (min-width: 901px) {
       .snap-container { height: 100dvh; }
       .page { height: 100dvh; }
@@ -1053,16 +997,6 @@
 </style>
 </head>
 <body>
-
-<!-- Splash: shows on load, then reveals the site -->
-<div id="smt-splash">
-  <div class="splash-logo">
-    <img src="assets/logo.svg" alt="Salman Mohammad Transport LLC">
-  </div>
-  <div class="splash-bar"></div>
-  <div class="splash-tag">Complete Transport &amp; Environmental Solutions</div>
-  <button class="splash-skip" type="button" onclick="dismissSplash()">Skip</button>
-</div>
 
 
 <header>
@@ -1609,14 +1543,6 @@
       if (b) b.setAttribute('aria-expanded', 'false');
     }
   });
-
-  // ---------- Splash ----------
-  function dismissSplash() {
-    var sp = document.getElementById('smt-splash');
-    if (sp) sp.classList.add('done');
-  }
-  window.dismissSplash = dismissSplash;
-  setTimeout(dismissSplash, 2400);
 
   // ---------- Floating "Contact us" button ----------
   var fabWrapEl = document.getElementById('fabWrap');
