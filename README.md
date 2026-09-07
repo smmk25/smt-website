@@ -78,21 +78,44 @@ python3 build_preview.py     # writes preview-full.html
 
 ## Form pipeline
 
-The quote form POSTs JSON to an n8n webhook:
+The quote form POSTs JSON to an n8n webhook, which persists every legitimate
+enquiry to a Postgres database (Neon) *before* notifying anyone — the DB row
+is the source of truth, the email is just a notification about it:
 
 ```
-Webhook → Validate & Normalise → IF (spam?) ─┬→ Email (SMTP)
-                                             ├→ Teams notification
-                                             └→ Respond to browser
+Webhook → Validate & Normalise → IF (spam?) ─┬→ Save Lead to Neon → Email (SMTP) → Respond to browser
+                                             └→ Respond to browser (spam silently dropped)
 ```
 
 **Setup:**
 
 1. Import `n8n-quote-workflow.json` into n8n
 2. Copy the *Production* webhook URL into `N8N_WEBHOOK_URL` in `index-scroll.html`
-3. Add an SMTP credential to the email node
-4. Set Allowed Origins (CORS) on the webhook node to your domain
-5. Activate the workflow
+3. Create a free [Neon](https://neon.tech) Postgres project, then run this once
+   in its SQL editor to create the leads table:
+   ```sql
+   CREATE TABLE quote_requests (
+     id            BIGSERIAL PRIMARY KEY,
+     dedupe_key    TEXT UNIQUE NOT NULL,
+     service       TEXT NOT NULL,
+     frequency     TEXT,
+     is_contract   BOOLEAN,
+     priority      TEXT,
+     company       TEXT NOT NULL,
+     contact_name  TEXT NOT NULL,
+     phone         TEXT NOT NULL,
+     email         TEXT NOT NULL,
+     description   TEXT,
+     source        TEXT,
+     submitted_at  TIMESTAMPTZ,
+     received_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+   );
+   ```
+4. In n8n, add a Postgres credential (Neon's connection string, from the Neon
+   dashboard) and select it on the "Save Lead to Neon" node
+5. Add an SMTP credential to the email node
+6. Set Allowed Origins (CORS) on the webhook node to your domain
+7. Activate the workflow
 
 **Notes on the design:**
 
@@ -100,8 +123,47 @@ Webhook → Validate & Normalise → IF (spam?) ─┬→ Email (SMTP)
   trivially bypassed by POSTing directly to a public webhook
 - A honeypot field catches bots without a CAPTCHA
 - Spam receives a `200` rather than an error, so bots don't retry
-- The Teams node is set to continue-on-error, so a Teams outage
-  never blocks the email
+- `dedupe_key` (email + company + submitted_at) is unique in Postgres, and the
+  insert uses `ON CONFLICT ... DO NOTHING` — a retried webhook POST (e.g. a
+  flaky network on the visitor's end) can't create a duplicate lead
+- The Neon node is set to continue-on-error, so a transient DB hiccup
+  doesn't swallow the sales email entirely — check the n8n execution log
+  if that ever fires, since it means a lead didn't get persisted
+- Neon free tier scales to zero and auto-resumes on the next query, so it
+  stays reachable even between quiet weeks — no manual reactivation step
+
+## Weekly report
+
+No dashboard, no login — every Monday at 8am Dubai time the workflow emails
+`info@salmanmohammadtransport.ae` a CSV of the last 7 days of leads:
+
+```
+Every Monday 8am Dubai → Fetch Last 7 Days (Postgres) → Build CSV → Email Weekly Report
+```
+
+This is a second, independent trigger branch in the same workflow — it doesn't
+touch the webhook path above.
+
+**On the timezone:** your n8n workflow's default timezone is already set to
+UTC+4, so the cron is just the plain local time you want — `0 8 * * 1`, 8:00
+AM every Monday, no manual UTC conversion needed. (The UAE has no daylight
+saving time, so this offset never changes and there's nothing to revisit
+later.)
+
+**Extra setup (on top of the steps above):**
+
+1. On the "Fetch Last 7 Days" node, select the same Neon Postgres credential
+   used on "Save Lead to Neon"
+2. On the "Email Weekly Report" node, select the same SMTP credential used on
+   "Email Sales Team"
+3. Double-check the "Build CSV" node's `this.helpers.prepareBinaryData` call
+   and the "Email Weekly Report" node's attachment option still match your
+   n8n version's exact API — both were hand-written outside the n8n editor,
+   so open each node once after import to confirm it validates cleanly
+4. Send yourself a manual test run (the node's "Execute step" button) before
+   relying on the Monday schedule, and confirm the email actually lands at
+   8am Dubai time on the first real Monday run — that's the real proof the
+   timezone assumption above was correct
 
 ---
 
