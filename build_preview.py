@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Builds preview-full.html: the whole site in ONE self-contained file.
-Splash and mobile menu are already part of index-scroll.html; this only
-inlines assets so the file renders without its folder."""
+Splash and mobile menu are already part of index.html; this only
+inlines assets so the file renders without its folder. (Links to the
+service pages won't resolve in the preview — they need the folder.)"""
 import base64, os, re
 BASE = os.path.dirname(os.path.abspath(__file__))
 def b64(p):
     return base64.b64encode(open(os.path.join(BASE, p), 'rb').read()).decode()
 
-html = open(os.path.join(BASE, 'index-scroll.html'), encoding='utf-8').read()
+html = open(os.path.join(BASE, 'index.html'), encoding='utf-8').read()
 
 for sub in ('services', 'about', 'clients'):
     d = os.path.join(BASE, 'assets', sub)

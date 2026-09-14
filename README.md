@@ -38,13 +38,17 @@ simply left.
 ## Structure
 
 ```
-index-scroll.html          # the whole site — one page, five sections
-splash.html                # logo animation, forwards to the main page
-footer-block.html          # footer as a standalone reusable snippet
+index.html                 # the homepage — five sections, splash overlay built in
+index-scroll.html          # old address, redirects to /
+<service-slug>/index.html  # one landing page per service (generated, see below)
+build_pages.py             # generates the service pages + sitemap.xml
 build_preview.py           # inlines every asset into one self-contained file
+sitemap.xml, robots.txt    # for search engines
+.htaccess                  # 301s old URLs to /, compression, browser caching
 n8n-quote-workflow.json    # importable automation workflow
 
 assets/
+  css/pages.css            # styles for the service pages
   logo.svg                 # for light backgrounds
   logo-white.svg           # for dark backgrounds (the "T" is white)
   favicon/                 # .ico, .svg, PNGs, apple-touch, manifest
@@ -64,7 +68,7 @@ or `file://` origin will block the form submission:
 
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000/splash.html
+# then visit http://localhost:8000/
 ```
 
 To generate a single self-contained file with every asset inlined
@@ -73,6 +77,24 @@ To generate a single self-contained file with every asset inlined
 ```bash
 python3 build_preview.py     # writes preview-full.html
 ```
+
+---
+
+## Service pages & SEO
+
+Each service has its own landing page (`/sewage-tanker-dubai/`,
+`/sweet-water-tanker-dubai/`, …) so it can rank for the searches customers
+actually type — a single homepage can only rank for a handful. The pages are
+generated from the copy in `build_pages.py`; edit the `SERVICES` list there,
+then:
+
+```bash
+python3 build_pages.py       # rewrites every /<slug>/index.html and sitemap.xml
+```
+
+Their "Request a Quote" buttons link to `/#quote=<service>`, which opens the
+homepage quote section with that service pre-selected. Any `#hash` also skips
+the splash, so returning visitors land straight on the content.
 
 ---
 
@@ -90,7 +112,7 @@ Webhook → Validate & Normalise → IF (spam?) ─┬→ Save Lead to Neon → 
 **Setup:**
 
 1. Import `n8n-quote-workflow.json` into n8n
-2. Copy the *Production* webhook URL into `N8N_WEBHOOK_URL` in `index-scroll.html`
+2. Copy the *Production* webhook URL into `N8N_WEBHOOK_URL` in `index.html`
 3. Create a free [Neon](https://neon.tech) Postgres project, then run this once
    in its SQL editor to create the leads table:
    ```sql
