@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /quote-request-email.html
+
+Sitemap: https://salmanmohammadtransport.ae/sitemap.xml
