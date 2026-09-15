@@ -2,6 +2,13 @@
 
 RewriteEngine On
 
+# One address for the whole site: http:// and www. go to https://salmanmohammadtransport.ae
+# (.well-known is left alone so the host's SSL certificate renewal keeps working)
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://salmanmohammadtransport.ae%{REQUEST_URI} [L,R=301]
+
 # The homepage lives at "/" — old addresses redirect there permanently,
 # so any links or rankings they built up pass to the one canonical URL
 RewriteRule ^index-scroll\.html$ / [L,R=301]
